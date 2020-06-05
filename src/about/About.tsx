@@ -122,7 +122,7 @@ export function About(props: Props) {
         </Grid>
         <Grid container item xs={10} alignItems="center" justify="flex-end">
           <Grid item>
-            <Link href="https://github.com/ColinLarsonCA/colinlarson.ca/commits/master" target="_blank">Changes ↗</Link>
+            <Link color="textSecondary" href="https://github.com/ColinLarsonCA/colinlarson.ca/commits/master" target="_blank">Changes ↗</Link>
           </Grid>
         </Grid>
       </Grid>

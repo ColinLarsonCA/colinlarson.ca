@@ -62,14 +62,14 @@ function App() {
             </Switch>
           </Router>
         </div>
-        <Snackbar open={true}>
+        {/* <Snackbar open={true}>
           <Alert
             severity="info"
             onClose={() => {}}
           >
             <Typography>Check out my <Link href="https://kickstarter.com" target="_blank">Kickstarter</Link> and make sure to like and subscribe!</Typography>
           </Alert>
-        </Snackbar>
+        </Snackbar> */}
       </div>
     </MaterialThemeProvider>
   );
