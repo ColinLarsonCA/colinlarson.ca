@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 import axios from "axios";
 import moment from "moment";
-import { JobPreview, JobPreviewProps } from "previews";
+import { IntroCard, JobCard, JobCardProps } from "cards";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -18,12 +18,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function History() {
-  const [jobs, setJobs] = useState<JobPreviewProps[]>();
+  const [jobs, setJobs] = useState<JobCardProps[]>();
   useEffect(() => {
     axios.get("https://raw.githubusercontent.com/ColinLarsonCA/work-history/master/index.json")
       .then((res: any) => {
-        let newJobs: JobPreviewProps[] = [];
+        let newJobs: JobCardProps[] = [];
+        console.log(res.data);
         res.data?.forEach((job: any) => newJobs.push({
+          path: job.key,
           role: job.role,
           company: job.company,
           logo: job.logo,
@@ -40,17 +42,18 @@ export function History() {
   }, []);
   const classes = useStyles();
 
-  const numCards = jobs ? jobs.length : 0;
+  const numCards = jobs ? jobs.length + 1 : 0;
   const cards: any[] = [];
-  const card = (job: any, i: number) => {
-    const many = numCards > 1;
+  const many = numCards > 1;
+  const card = (job: any, key: string, intro: boolean = false) => {
     return (
-      <Grid key={i} item container className={classes.card} xs={12} sm={12} md={many ? 6 : 12} lg={many ? 4 : 12} xl={many ? 3 : 12}>
-        <JobPreview {...job}/>
+      <Grid key={key} item container className={classes.card} xs={12} sm={12} md={many ? 6 : 12} lg={many ? 4 : 12} xl={many ? 3 : 12}>
+        {intro ? <IntroCard /> : <JobCard {...job}/>}
       </Grid>
     )
   }
-  jobs?.forEach((job: any, i: number) => cards.push(card(job, i)));
+  cards.push(card({}, "intro", true));
+  jobs?.forEach((job: any, i: number) => cards.push(card(job, job.key)));
   return (
     <React.Fragment>
       <Grid container spacing={2} justify="center">

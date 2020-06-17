@@ -21,10 +21,12 @@
     "react-avatar": "^3.9.3",
     "react-dom": "^16.13.1",
     "react-gravatar": "^2.6.3",
+    "react-markdown": "^4.3.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-social-icons": "^4.1.0",
     "react-twitch-embed-video": "^2.0.3",
+    "react-twitter-embed": "^3.0.3",
     "typescript": "^3.7.5"
   },
   "scripts": {

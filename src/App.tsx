@@ -13,7 +13,7 @@ import {
 import { Alert } from "@material-ui/lab";
 import { indigo, orange } from "@material-ui/core/colors";
 import { About } from "about";
-import { History, Home, Experiments } from "pages";
+import { Experiments, History, Home, Job } from "pages";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,6 +57,7 @@ function App() {
           <Router>
             <Switch>
               <Route path="/experiments"><Experiments/></Route>
+              <Route path="/history/:key"><Job/></Route>
               <Route path="/history"><History/></Route>
               <Route path="/"><Home/></Route>
             </Switch>

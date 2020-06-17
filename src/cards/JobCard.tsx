@@ -9,7 +9,7 @@ import {
   Chip,
   Typography,
   makeStyles,
-} from '@material-ui/core';
+} from "@material-ui/core";
 import moment, { Moment } from "moment";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
     height: 140,
   },
   chips: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    '& > *': {
+    display: "flex",
+    flexWrap: "wrap",
+    "& > *": {
       margin: theme.spacing(0.5),
     },
   },
@@ -32,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export interface JobPreviewProps {
+export interface JobCardProps {
+  path: string;
   role: string;
   company: string;
   logo: string;
@@ -42,7 +43,7 @@ export interface JobPreviewProps {
   end?: Moment;
 }
 
-export function JobPreview(props: JobPreviewProps) {
+export function JobCard(props: JobCardProps) {
   const classes = useStyles();
   const chips: any[] = [];
   props.tags.forEach((tag: string) => {
@@ -67,7 +68,10 @@ export function JobPreview(props: JobPreviewProps) {
         </div>
       </CardContent>
       <CardActions>
-        <Button color="primary">
+        <Button
+          color="primary"
+          href={"history/" + props.path}
+        >
           Read More
         </Button>
         <Typography variant="caption" color="textSecondary">{moment.duration(props.readtime, "s").minutes() + "m"}</Typography>
