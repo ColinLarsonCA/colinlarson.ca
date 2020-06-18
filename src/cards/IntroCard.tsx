@@ -6,7 +6,8 @@ import {
   CardContent,
   CardHeader,
   Typography,
-  makeStyles
+  makeStyles,
+  Link
 } from '@material-ui/core';
 import Markdown from "react-markdown";
 
@@ -15,6 +16,8 @@ interface IntroCardProps {
   text: string;
   action: string;
   href: string;
+  external?: boolean;
+  source?: string;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +28,12 @@ const useStyles = makeStyles((theme) => ({
       flex: 1,
    }
   },
+  spacer: {
+    flex: 1
+  },
+  source: {
+    paddingRight: theme.spacing(1)
+  }
 }));
 
 export function IntroCard(props: IntroCardProps) {
@@ -41,7 +50,13 @@ export function IntroCard(props: IntroCardProps) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button color="primary" href={props.href}>{props.action}</Button>
+        <Button color="primary" href={props.href} target={props.external ? "_blank" : ""}>{props.action}</Button>
+        {props.source && (
+          <React.Fragment>
+            <div className={classes.spacer}/>
+            <Link className={classes.source} color="textSecondary" href={props.source} target="_blank">Source ↗</Link>
+          </React.Fragment>
+        )}
       </CardActions>
     </Card>
   );

@@ -8,7 +8,8 @@ import {
   makeStyles,
   Snackbar,
   ThemeProvider as MaterialThemeProvider,
-  Typography
+  Typography,
+  ThemeProvider
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { indigo, orange } from "@material-ui/core/colors";
@@ -21,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
+    marginTop: theme.spacing(12)
   },
 }));
 

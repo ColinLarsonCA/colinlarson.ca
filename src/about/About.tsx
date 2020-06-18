@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Divider, Drawer, Grid, IconButton, Link, Tooltip, Typography, makeStyles } from "@material-ui/core";
+import { AppBar, Button, Divider, Drawer, Grid, IconButton, Link, Toolbar, Tooltip, Typography, makeStyles } from "@material-ui/core";
 import { Brightness4 as Moon, BrightnessHigh as Sun, Email } from "@material-ui/icons";
 import Avatar from "react-avatar";
 import Twitter from "assets/twitter.png";
@@ -10,6 +10,7 @@ import Linkedin from "assets/linkedin.png";
 import Twitch from "assets/twitch.png";
 import Instagram from "assets/instagram.png";
 import { ImgIcon } from "common";
+import { useWidth } from "hooks";
 import { useIsDark } from "themes";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,12 +20,23 @@ const useStyles = makeStyles((theme) => ({
     flexShrink: 0,
     textAlign: "center",
   },
+  toolbar: {
+    padding: theme.spacing(1)
+  },
   avatar: {
     "& img": {
       border: theme.spacing(0.5) + "px solid " + theme.palette.primary.main,
     },
     display: "block",
     margin: theme.spacing(1) + "px auto",
+  },
+  smallAvatar: {
+    "& img": {
+      border: theme.spacing(0.3) + "px solid " + theme.palette.primary.main,
+    }
+  },
+  nameContainer: {
+    padding: theme.spacing(2)
   },
   name: {
     paddingTop: theme.spacing(1),
@@ -58,6 +70,7 @@ interface Props {
 }
 
 export function About(props: Props) {
+  const width = useWidth();
   const isDark = useIsDark();
   const classes = useStyles();
   const icon = (site: string, href: string, src: any) => {
@@ -68,6 +81,23 @@ export function About(props: Props) {
         </IconButton>
       </Tooltip>
     )
+  }
+  if (width !== "lg" && width !== "xl") {
+    return (
+      <AppBar color="inherit" position="fixed">
+        <Toolbar className={classes.toolbar}>
+          <Avatar className={classes.smallAvatar} round={true} facebookId="1473156958" size="68" />
+          <Grid className={classes.nameContainer} container>
+            <Grid item xs={12}>
+              <Typography variant="h6">Colin Larson</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography className={classes.desc} variant="caption">Software Developer</Typography>
+            </Grid>
+          </Grid>
+        </Toolbar>
+      </AppBar>
+    );
   }
   return (
     <Drawer className={classes.drawer} open={true} variant="permanent" anchor="left">
