@@ -1,25 +1,48 @@
 import React from "react";
 import { 
   Card,
+  Button,
+  CardActions,
   CardContent,
   CardHeader,
-  Link,
   Typography,
+  makeStyles
 } from '@material-ui/core';
+import Markdown from "react-markdown";
 
-export function IntroCard() {
+interface IntroCardProps {
+  title: string;
+  text: string;
+  action: string;
+  href: string;
+}
+
+const useStyles = makeStyles((theme) => ({
+  card: {
+    display: "flex",
+    flexDirection: "column",
+    "& .MuiCardContent-root": {
+      flex: 1,
+   }
+  },
+}));
+
+export function IntroCard(props: IntroCardProps) {
+  const classes = useStyles();
+  console.log(props.text);
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardHeader
-        title="Work History"
+        title={props.title}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" color="textSecondary">
-          I have been active in the tech industry since starting my B.Sc at the University of Saskatchewan in 2009. Beginning as an IT Support during the summer of my third year and continuously seeking out new challenges and technology stacks after graduating I have gained a wide breadth of experience.
-          <br/><br/>
-          You can read all about my past professional work, starting with <Link href="/history/2012-05-nhrc">NHRC</Link>.
+          <Markdown source={props.text} />
         </Typography>
       </CardContent>
+      <CardActions>
+        <Button color="primary" href={props.href}>{props.action}</Button>
+      </CardActions>
     </Card>
   );
 }

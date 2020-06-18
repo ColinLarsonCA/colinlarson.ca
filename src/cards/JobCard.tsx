@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardMedia,
   Chip,
+  Link,
   Typography,
   makeStyles,
 } from "@material-ui/core";
@@ -29,6 +30,12 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiCardContent-root": {
       flex: 1,
    }
+  },
+  readTime: {
+    flex: 1,
+  },
+  source: {
+    paddingRight: theme.spacing(1),
   }
 }));
 
@@ -74,7 +81,16 @@ export function JobCard(props: JobCardProps) {
         >
           Read More
         </Button>
-        <Typography variant="caption" color="textSecondary">{moment.duration(props.readtime, "s").minutes() + "m"}</Typography>
+        <Typography className={classes.readTime} variant="caption" color="textSecondary">{moment.duration(props.readtime, "s").minutes() + "m"}</Typography>
+        <Link
+          className={classes.source}
+          variant="caption"
+          color="textSecondary"
+          href={"https://github.com/ColinLarsonCA/work-history/blob/master/" + props.path + ".md"}
+          target="_blank"
+        >
+          Source ↗
+        </Link>
       </CardActions>
     </Card>
   );

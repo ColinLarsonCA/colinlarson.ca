@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Grid, makeStyles } from "@material-ui/core";
+import { Grid, Link, makeStyles } from "@material-ui/core";
 import { useParams } from "react-router";
 import Markdown from "react-markdown";
 import axios from "axios";
+import { Crumbs } from "common";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -23,8 +24,23 @@ export function Job() {
       .catch((err: any) => console.error(err));
   }, []);
   return (
-    <Grid container justify="center">
-      <Markdown className={classes.content} source={content}/>
-    </Grid>
+    <React.Fragment>
+      <Crumbs crumbs={[
+        {href: "/", label: "Home"},
+        {href: "/history", label: "Work History"},
+        {href: "/history/" + params.key, label: params.key.toUpperCase()}
+      ]} />
+      <Grid container>
+        <Markdown className={classes.content} source={content}/>
+      </Grid>
+      <Link
+          variant="caption"
+          color="textSecondary"
+          href={"https://github.com/ColinLarsonCA/work-history/blob/master/" + params.key + ".md"}
+          target="_blank"
+        >
+          Source ↗
+        </Link>
+    </React.Fragment>
   );
 }
