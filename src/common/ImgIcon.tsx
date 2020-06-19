@@ -13,13 +13,14 @@ const useStyles = makeStyles((theme) => ({
 
 interface Props {
   src: string;
+  alt: string;
 }
 
 export function ImgIcon(props: Props) { 
   const classes = useStyles();
   return (
     <Icon className={classes.root}>
-      <img className={classes.image} src={props.src} />
+      <img alt={props.alt} className={classes.image} src={props.src} />
     </Icon>
   )
 }

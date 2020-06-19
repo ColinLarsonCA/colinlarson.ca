@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-import { Twitch, useIsLiveOnTwitch } from "twitch";
+// import { Twitch, useIsLiveOnTwitch } from "twitch";
 import { IntroCard, TwitterCard } from "cards";
 
 export function Home() {

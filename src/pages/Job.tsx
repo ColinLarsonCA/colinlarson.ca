@@ -22,7 +22,7 @@ export function Job() {
     axios.get("https://raw.githubusercontent.com/ColinLarsonCA/work-history/master/" + params.key + ".md")
       .then((res: any) => setContent(res.data))
       .catch((err: any) => console.error(err));
-  }, []);
+  }, [params.key]);
   return (
     <React.Fragment>
       <Crumbs crumbs={[

@@ -77,7 +77,7 @@ export function About(props: Props) {
     return (
       <Tooltip title={site}>
         <IconButton href={href} target="_blank">
-          <ImgIcon src={src} />
+          <ImgIcon alt={site} src={src} />
         </IconButton>
       </Tooltip>
     )

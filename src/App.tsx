@@ -7,7 +7,6 @@ import {
   makeStyles,
   ThemeProvider as MaterialThemeProvider,
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
 import { indigo, orange } from "@material-ui/core/colors";
 import { About } from "about";
 import { Experiments, History, Home, Job } from "pages";
