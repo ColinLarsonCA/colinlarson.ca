@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
 
 export function IntroCard(props: IntroCardProps) {
   const classes = useStyles();
-  console.log(props.text);
   return (
     <Card className={classes.card}>
       <CardHeader

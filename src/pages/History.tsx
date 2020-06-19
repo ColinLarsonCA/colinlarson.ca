@@ -23,7 +23,6 @@ export function History() {
     axios.get("https://raw.githubusercontent.com/ColinLarsonCA/work-history/master/index.json")
       .then((res: any) => {
         let newJobs: JobCardProps[] = [];
-        console.log(res.data);
         res.data?.forEach((job: any) => newJobs.push({
           path: job.key,
           role: job.role,
@@ -58,7 +57,7 @@ export function History() {
     )
   }
   cards.push(card({}, "intro", true));
-  jobs?.forEach((job: any, i: number) => cards.push(card(job, job.key)));
+  jobs?.forEach((job: any, i: number) => cards.push(card(job, job.path)));
   return (
     <React.Fragment>
       <Crumbs crumbs={[{href: "/", label: "Home"}, {href: "/history", label: "Work History"}]} />

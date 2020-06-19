@@ -20,8 +20,13 @@ const useStyles = makeStyles((theme) => ({
     flexShrink: 0,
     textAlign: "center",
   },
-  toolbar: {
-    padding: theme.spacing(1)
+  namebar: {
+    padding: theme.spacing(1),
+    paddingBottom: 0
+  },
+  linkbar: {
+    padding: theme.spacing(1),
+    paddingTop: 0
   },
   avatar: {
     "& img": {
@@ -92,7 +97,7 @@ export function About(props: Props) {
   if (width !== "lg" && width !== "xl") {
     return (
       <AppBar color="inherit" position="fixed">
-        <Toolbar className={classes.toolbar}>
+        <Toolbar className={classes.namebar}>
           <Avatar className={classes.smallAvatar} round={true} facebookId="1473156958" size="60" />
           <Grid className={classes.nameContainer} container>
             <Grid item xs={12}>
@@ -103,6 +108,19 @@ export function About(props: Props) {
             </Grid>
           </Grid>
           {modeToggle()}
+        </Toolbar>
+        <Toolbar className={classes.linkbar}>
+          {icon("Twitter", "https://twitter.com/colintxt", Twitter)}
+          {icon("Facebook", "https://facebook.com/ColinLarsonCA", Facebook)}
+          {icon("Instagram", "https://instagram.com/colinlarson.ca", Instagram)}
+          {icon("Twitch", "https://twitch.tv/colintilts", Twitch)}
+          {icon("GitHub", "https://github.com/ColinLarsonCA", isDark ? GithubWhite : GithubBlack)}
+          {icon("LinkedIn", "https://www.linkedin.com/in/colinlarson/", Linkedin)}
+          <Tooltip title="Email">
+            <IconButton href="mailto:hello@colinlarson.ca" target="_blank">
+              <Email />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
     );

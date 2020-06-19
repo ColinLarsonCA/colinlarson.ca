@@ -18,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(2),
-    [theme.breakpoints.down('sm')]: {
-      marginTop: theme.spacing(12)
+    [theme.breakpoints.down('md')]: {
+      marginTop: theme.spacing(20)
     },
   },
 }));
