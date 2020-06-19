@@ -1,0 +1,39 @@
+name: Build and deploy to firebase
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+      - name: install deps
+        run: npm install
+      - name: build
+        run: npm run build
+      - name: upload artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: build
+          path: build
+  deploy:
+    name: deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+      - name: download artifact
+        uses: actions/download-artifact@master
+        with:
+          name: build
+      - name: deploy to firebase
+        uses: w9jds/firebase-action@v1.3.1
+        with: 
+          args: deploy --only hosting
+        env:
+         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+  
