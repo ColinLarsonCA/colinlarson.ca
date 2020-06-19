@@ -9,10 +9,13 @@ import { TwitterTimelineEmbed } from "react-twitter-embed";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    width: "100%"
+    width: "100%",
   },
   content: {
-    height: "100%"
+    height: "100%",
+    [theme.breakpoints.down('sm')]: {
+      height: 600
+    },
   },
 }));
 
