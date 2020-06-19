@@ -82,11 +82,18 @@ export function About(props: Props) {
       </Tooltip>
     )
   }
+  const modeToggle = () => {
+    return (
+      <IconButton onClick={() => props.toggleTheme()}>
+        {isDark ? <Sun /> : <Moon />}
+      </IconButton>
+    )
+  }
   if (width !== "lg" && width !== "xl") {
     return (
       <AppBar color="inherit" position="fixed">
         <Toolbar className={classes.toolbar}>
-          <Avatar className={classes.smallAvatar} round={true} facebookId="1473156958" size="68" />
+          <Avatar className={classes.smallAvatar} round={true} facebookId="1473156958" size="60" />
           <Grid className={classes.nameContainer} container>
             <Grid item xs={12}>
               <Typography variant="h6">Colin Larson</Typography>
@@ -95,6 +102,7 @@ export function About(props: Props) {
               <Typography className={classes.desc} variant="caption">Software Developer</Typography>
             </Grid>
           </Grid>
+          {modeToggle()}
         </Toolbar>
       </AppBar>
     );
@@ -146,9 +154,7 @@ export function About(props: Props) {
       <Divider className={classes.divider} variant="middle" />
       <Grid container className={classes.bottom}>
         <Grid item xs={2}>
-          <IconButton onClick={() => props.toggleTheme()}>
-            {isDark ? <Sun /> : <Moon />}
-          </IconButton>
+          {modeToggle()}
         </Grid>
         <Grid container item xs={10} alignItems="center" justify="flex-end">
           <Grid item>
