@@ -113,7 +113,7 @@ export function About(props: Props) {
           {icon("Twitter", "https://twitter.com/colintxt", Twitter)}
           {icon("Facebook", "https://facebook.com/ColinLarsonCA", Facebook)}
           {icon("Instagram", "https://instagram.com/colinlarson.ca", Instagram)}
-          {icon("Twitch", "https://twitch.tv/colintilts", Twitch)}
+          {icon("Twitch", "https://twitch.tv/colincasts", Twitch)}
           {icon("GitHub", "https://github.com/ColinLarsonCA", isDark ? GithubWhite : GithubBlack)}
           {icon("LinkedIn", "https://www.linkedin.com/in/colinlarson/", Linkedin)}
           <Tooltip title="Email">
@@ -143,7 +143,7 @@ export function About(props: Props) {
           {icon("Instagram", "https://instagram.com/colinlarson.ca", Instagram)}
         </Grid>
         <Grid item xs={2}>
-          {icon("Twitch", "https://twitch.tv/colintilts", Twitch)}
+          {icon("Twitch", "https://twitch.tv/colincasts", Twitch)}
         </Grid>
         <Grid item xs={2}></Grid>
 
