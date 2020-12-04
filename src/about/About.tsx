@@ -98,7 +98,7 @@ export function About(props: Props) {
     return (
       <AppBar color="inherit" position="fixed">
         <Toolbar className={classes.namebar}>
-          <Avatar className={classes.smallAvatar} round={true} facebookId="1473156958" size="60" />
+          <Avatar className={classes.smallAvatar} round={true} githubHandle="ColinLarsonCA" size="60" />
           <Grid className={classes.nameContainer} container>
             <Grid item xs={12}>
               <Typography variant="h6">Colin Larson</Typography>
@@ -127,7 +127,7 @@ export function About(props: Props) {
   }
   return (
     <Drawer className={classes.drawer} open={true} variant="permanent" anchor="left">
-      <Avatar className={classes.avatar} round={true} facebookId="1473156958" size="240" />
+      <Avatar className={classes.avatar} round={true} githubHandle="ColinLarsonCA" size="240" />
       <Typography className={classes.name} variant="h5">Colin Larson</Typography>
       <Typography className={classes.desc} variant="caption">Software Developer</Typography>
       <Divider className={classes.divider} variant="middle" />
