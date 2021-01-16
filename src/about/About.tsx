@@ -29,16 +29,10 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 0
   },
   avatar: {
-    "& img": {
-      border: theme.spacing(0.5) + "px solid " + theme.palette.primary.main,
-    },
     display: "block",
     margin: theme.spacing(1) + "px auto",
   },
   smallAvatar: {
-    "& img": {
-      border: theme.spacing(0.3) + "px solid " + theme.palette.primary.main,
-    }
   },
   nameContainer: {
     padding: theme.spacing(2)
@@ -94,11 +88,12 @@ export function About(props: Props) {
       </IconButton>
     )
   }
-  if (width !== "lg" && width !== "xl") {
+  const isMobile = width !== "lg" && width !== "xl";
+  if (isMobile) {
     return (
       <AppBar color="inherit" position="fixed">
         <Toolbar className={classes.namebar}>
-          <Avatar className={classes.smallAvatar} round={true} githubHandle="ColinLarsonCA" size="60" />
+          <Avatar className={classes.smallAvatar} round={false} githubHandle="ColinLarsonCA" size="60" />
           <Grid className={classes.nameContainer} container>
             <Grid item xs={12}>
               <Typography variant="h6">Colin Larson</Typography>
@@ -127,12 +122,12 @@ export function About(props: Props) {
   }
   return (
     <Drawer className={classes.drawer} open={true} variant="permanent" anchor="left">
-      <Avatar className={classes.avatar} round={true} githubHandle="ColinLarsonCA" size="240" />
+      <Avatar className={classes.avatar} round={false} githubHandle="ColinLarsonCA" size="240" />
       <Typography className={classes.name} variant="h5">Colin Larson</Typography>
       <Typography className={classes.desc} variant="caption">Software Developer</Typography>
       <Divider className={classes.divider} variant="middle" />
       <Grid className={classes.socials} container justify="center">
-        <Grid item xs={2}></Grid>
+        <Grid item xs={2}/>
         <Grid item xs={2}>
           {icon("Twitter", "https://twitter.com/colintxt", Twitter)}
         </Grid>
@@ -145,9 +140,9 @@ export function About(props: Props) {
         <Grid item xs={2}>
           {icon("Twitch", "https://twitch.tv/colincasts", Twitch)}
         </Grid>
-        <Grid item xs={2}></Grid>
+        <Grid item xs={2}/>
 
-        <Grid item xs={3}></Grid>
+        <Grid item xs={3}/>
         <Grid item xs={2}>
           {icon("GitHub", "https://github.com/ColinLarsonCA", isDark ? GithubWhite : GithubBlack)}
         </Grid>
@@ -161,7 +156,7 @@ export function About(props: Props) {
             </IconButton>
           </Tooltip>
         </Grid>
-        <Grid item xs={3}></Grid>
+        <Grid item xs={3}/>
       </Grid>
 
       <Button className={classes.button} variant="contained" color="primary" disableElevation href="/">Home</Button>
