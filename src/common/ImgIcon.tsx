@@ -3,11 +3,11 @@ import { Icon, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    textAlign: "center"
+    textAlign: "center",
   },
   image: {
     height: "100%",
-    color: theme.palette.primary.main
+    color: theme.palette.primary.main,
   },
 }));
 
@@ -16,11 +16,11 @@ interface Props {
   alt: string;
 }
 
-export function ImgIcon(props: Props) { 
+export function ImgIcon(props: Props) {
   const classes = useStyles();
   return (
     <Icon className={classes.root}>
       <img alt={props.alt} className={classes.image} src={props.src} />
     </Icon>
-  )
+  );
 }

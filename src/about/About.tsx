@@ -1,7 +1,24 @@
 import React from "react";
-import { AppBar, Button, Divider, Drawer, Grid, IconButton, Link, Toolbar, Tooltip, Typography, makeStyles } from "@material-ui/core";
-import { Brightness4 as Moon, BrightnessHigh as Sun, Email } from "@material-ui/icons";
-import Avatar from "react-avatar";
+import {
+  AppBar,
+  Button,
+  Divider,
+  Drawer,
+  Grid,
+  IconButton,
+  Link,
+  Toolbar,
+  Tooltip,
+  Typography,
+  makeStyles,
+  Avatar,
+} from "@material-ui/core";
+import {
+  Brightness4 as Moon,
+  BrightnessHigh as Sun,
+  Email,
+} from "@material-ui/icons";
+import Me from "assets/me.jpeg";
 import Twitter from "assets/twitter.png";
 import GithubBlack from "assets/github-black.png";
 import GithubWhite from "assets/github-white.png";
@@ -12,8 +29,9 @@ import Instagram from "assets/instagram.png";
 import { ImgIcon } from "common";
 import { useWidth } from "hooks";
 import { useIsDark } from "themes";
+import { Theme } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   drawer: {
     display: "flex",
     width: "24em",
@@ -22,26 +40,31 @@ const useStyles = makeStyles((theme) => ({
   },
   namebar: {
     padding: theme.spacing(1),
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   linkbar: {
     padding: theme.spacing(1),
-    paddingTop: 0
+    paddingTop: 0,
   },
   avatar: {
     display: "block",
     margin: theme.spacing(1) + "px auto",
+    height: 240,
+    width: 240,
   },
   smallAvatar: {
+    marginLeft: theme.spacing(2),
+    height: 60,
+    width: 60,
   },
   nameContainer: {
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
   },
   name: {
     paddingTop: theme.spacing(1),
   },
   desc: {
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
   },
   divider: {
     marginTop: theme.spacing(1),
@@ -60,57 +83,100 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   bottom: {
-    paddingRight: theme.spacing(2)
-  }
+    paddingRight: theme.spacing(2),
+  },
 }));
 
 interface Props {
   toggleTheme: () => void;
 }
 
+interface IconData {
+  href: string;
+  src: any;
+}
+
+type Site =
+  | "Twitter"
+  | "Facebook"
+  | "Instagram"
+  | "Twitch"
+  | "Github White"
+  | "Github Black"
+  | "LinkedIn";
+
+const iconMap: Map<Site, IconData> = new Map([
+  ["Twitter", { href: "https://twitter.com/colintxt", src: Twitter }],
+  ["Facebook", { href: "https://facebook.com/ColinLarsonCA", src: Facebook }],
+  [
+    "Instagram",
+    { href: "https://instagram.com/colinlarson.ca", src: Instagram },
+  ],
+  ["Twitch", { href: "https://twitch.tv/colincasts", src: Twitch }],
+  [
+    "Github White",
+    { href: "https://github.com/ColinLarsonCA", src: GithubWhite },
+  ],
+  [
+    "Github Black",
+    { href: "https://github.com/ColinLarsonCA", src: GithubBlack },
+  ],
+  [
+    "LinkedIn",
+    { href: "https://www.linkedin.com/in/colinlarson/", src: Linkedin },
+  ],
+]);
+
 export function About(props: Props) {
   const width = useWidth();
   const isDark = useIsDark();
   const classes = useStyles();
-  const icon = (site: string, href: string, src: any) => {
+  const icon = (site: Site) => {
     return (
       <Tooltip title={site}>
-        <IconButton href={href} target="_blank">
-          <ImgIcon alt={site} src={src} />
+        <IconButton href={iconMap.get(site)?.href || ""} target="_blank">
+          <ImgIcon alt={site} src={iconMap.get(site)?.src || ""} />
         </IconButton>
       </Tooltip>
-    )
-  }
+    );
+  };
   const modeToggle = () => {
     return (
       <IconButton onClick={() => props.toggleTheme()}>
         {isDark ? <Sun /> : <Moon />}
       </IconButton>
-    )
-  }
+    );
+  };
   const isMobile = width !== "lg" && width !== "xl";
   if (isMobile) {
     return (
       <AppBar color="inherit" position="fixed">
         <Toolbar className={classes.namebar}>
-          <Avatar className={classes.smallAvatar} round={false} githubHandle="ColinLarsonCA" size="60" />
+          <Avatar
+            alt="Colin Larson"
+            src={Me}
+            className={`${classes.avatar} ${classes.smallAvatar}`}
+            variant={"square"}
+          />
           <Grid className={classes.nameContainer} container>
             <Grid item xs={12}>
               <Typography variant="h6">Colin Larson</Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography className={classes.desc} variant="caption">Software Developer</Typography>
+              <Typography className={classes.desc} variant="caption">
+                Software Developer
+              </Typography>
             </Grid>
           </Grid>
           {modeToggle()}
         </Toolbar>
         <Toolbar className={classes.linkbar}>
-          {icon("Twitter", "https://twitter.com/colintxt", Twitter)}
-          {icon("Facebook", "https://facebook.com/ColinLarsonCA", Facebook)}
-          {icon("Instagram", "https://instagram.com/colinlarson.ca", Instagram)}
-          {icon("Twitch", "https://twitch.tv/colincasts", Twitch)}
-          {icon("GitHub", "https://github.com/ColinLarsonCA", isDark ? GithubWhite : GithubBlack)}
-          {icon("LinkedIn", "https://www.linkedin.com/in/colinlarson/", Linkedin)}
+          {icon("Twitter")}
+          {icon("Facebook")}
+          {icon("Instagram")}
+          {icon("Twitch")}
+          {icon(isDark ? "Github White" : "Github Black")}
+          {icon("LinkedIn")}
           <Tooltip title="Email">
             <IconButton href="mailto:hello@colinlarson.ca" target="_blank">
               <Email />
@@ -121,33 +187,47 @@ export function About(props: Props) {
     );
   }
   return (
-    <Drawer className={classes.drawer} open={true} variant="permanent" anchor="left">
-      <Avatar className={classes.avatar} round={false} githubHandle="ColinLarsonCA" size="240" />
-      <Typography className={classes.name} variant="h5">Colin Larson</Typography>
-      <Typography className={classes.desc} variant="caption">Software Developer</Typography>
+    <Drawer
+      className={classes.drawer}
+      open={true}
+      variant="permanent"
+      anchor="left"
+    >
+      <Avatar
+        alt="Colin Larson"
+        src={Me}
+        className={classes.avatar}
+        variant="square"
+      />
+      <Typography className={classes.name} variant="h5">
+        Colin Larson
+      </Typography>
+      <Typography className={classes.desc} variant="caption">
+        Software Developer
+      </Typography>
       <Divider className={classes.divider} variant="middle" />
       <Grid className={classes.socials} container justify="center">
-        <Grid item xs={2}/>
+        <Grid item xs={2} />
         <Grid item xs={2}>
-          {icon("Twitter", "https://twitter.com/colintxt", Twitter)}
+          {icon("Twitter")}
         </Grid>
         <Grid item xs={2}>
-          {icon("Facebook", "https://facebook.com/ColinLarsonCA", Facebook)}
+          {icon("Facebook")}
         </Grid>
         <Grid item xs={2}>
-          {icon("Instagram", "https://instagram.com/colinlarson.ca", Instagram)}
+          {icon("Instagram")}
         </Grid>
         <Grid item xs={2}>
-          {icon("Twitch", "https://twitch.tv/colincasts", Twitch)}
+          {icon("Twitch")}
         </Grid>
-        <Grid item xs={2}/>
+        <Grid item xs={2} />
 
-        <Grid item xs={3}/>
+        <Grid item xs={3} />
         <Grid item xs={2}>
-          {icon("GitHub", "https://github.com/ColinLarsonCA", isDark ? GithubWhite : GithubBlack)}
+          {icon(isDark ? "Github White" : "Github Black")}
         </Grid>
         <Grid item xs={2}>
-          {icon("LinkedIn", "https://www.linkedin.com/in/colinlarson/", Linkedin)}
+          {icon("LinkedIn")}
         </Grid>
         <Grid item xs={2}>
           <Tooltip title="Email">
@@ -156,12 +236,36 @@ export function About(props: Props) {
             </IconButton>
           </Tooltip>
         </Grid>
-        <Grid item xs={3}/>
+        <Grid item xs={3} />
       </Grid>
 
-      <Button className={classes.button} variant="contained" color="primary" disableElevation href="/">Home</Button>
-      <Button className={classes.button} variant="contained" color="primary" disableElevation href="/history">Work History</Button>
-      <Button className={classes.button} variant="contained" color="primary" disableElevation href="/experiments">Experiments</Button>
+      <Button
+        className={classes.button}
+        variant="contained"
+        color="primary"
+        disableElevation
+        href="/"
+      >
+        Home
+      </Button>
+      <Button
+        className={classes.button}
+        variant="contained"
+        color="primary"
+        disableElevation
+        href="/history"
+      >
+        Work History
+      </Button>
+      <Button
+        className={classes.button}
+        variant="contained"
+        color="primary"
+        disableElevation
+        href="/experiments"
+      >
+        Experiments
+      </Button>
 
       <div className={classes.spacer} />
       <Divider className={classes.divider} variant="middle" />
@@ -171,10 +275,16 @@ export function About(props: Props) {
         </Grid>
         <Grid container item xs={10} alignItems="center" justify="flex-end">
           <Grid item>
-            <Link color="textSecondary" href="https://github.com/ColinLarsonCA/colinlarson.ca/commits/master" target="_blank">Changes ↗</Link>
+            <Link
+              color="textSecondary"
+              href="https://github.com/ColinLarsonCA/colinlarson.ca/commits/master"
+              target="_blank"
+            >
+              Changes ↗
+            </Link>
           </Grid>
         </Grid>
       </Grid>
     </Drawer>
-  )
+  );
 }

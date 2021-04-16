@@ -18,15 +18,16 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(2),
-    [theme.breakpoints.down('md')]: {
-      marginTop: theme.spacing(20)
+    [theme.breakpoints.down("md")]: {
+      marginTop: theme.spacing(20),
     },
   },
 }));
 
 function App() {
   const classes = useStyles();
-  const initialTheme = () => localStorage.getItem("theme") === "light" ? "light" : "dark";
+  const initialTheme = () =>
+    localStorage.getItem("theme") === "light" ? "light" : "dark";
   const [theme, setTheme] = useState(initialTheme());
   const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
   useEffect(() => localStorage.setItem("theme", theme), [theme]);
@@ -34,31 +35,39 @@ function App() {
     palette: {
       type: "light",
       primary: indigo,
-      secondary: orange
-    }
+      secondary: orange,
+    },
   });
   const dark = createMuiTheme({
     palette: {
       type: "dark",
       background: {
-        paper: "#353535"
+        paper: "#353535",
       },
       primary: orange,
-      secondary: indigo
+      secondary: indigo,
     },
   });
   return (
     <MaterialThemeProvider theme={theme === "light" ? light : dark}>
       <div className={classes.root}>
         <CssBaseline />
-        <About toggleTheme={toggleTheme}/>
+        <About toggleTheme={toggleTheme} />
         <div className={classes.content}>
           <Router>
             <Switch>
-              <Route path="/experiments"><Experiments/></Route>
-              <Route path="/history/:key"><Job/></Route>
-              <Route path="/history"><History/></Route>
-              <Route path="/"><Home/></Route>
+              <Route path="/experiments">
+                <Experiments />
+              </Route>
+              <Route path="/history/:key">
+                <Job />
+              </Route>
+              <Route path="/history">
+                <History />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
             </Switch>
           </Router>
         </div>

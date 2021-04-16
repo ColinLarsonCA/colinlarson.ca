@@ -1,5 +1,5 @@
 import React from "react";
-import { 
+import {
   Card,
   Button,
   CardActions,
@@ -7,8 +7,8 @@ import {
   CardHeader,
   Typography,
   makeStyles,
-  Link
-} from '@material-ui/core';
+  Link,
+} from "@material-ui/core";
 import Markdown from "react-markdown";
 
 interface IntroCardProps {
@@ -26,34 +26,45 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     "& .MuiCardContent-root": {
       flex: 1,
-   }
+    },
   },
   spacer: {
-    flex: 1
+    flex: 1,
   },
   source: {
-    paddingRight: theme.spacing(1)
-  }
+    paddingRight: theme.spacing(1),
+  },
 }));
 
 export function IntroCard(props: IntroCardProps) {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
-      <CardHeader
-        title={props.title}
-      />
+      <CardHeader title={props.title} />
       <CardContent>
         <Typography gutterBottom variant="h5" color="textSecondary">
           <Markdown source={props.text} />
         </Typography>
       </CardContent>
       <CardActions>
-        <Button color="primary" href={props.href} target={props.external ? "_blank" : ""}>{props.action}</Button>
+        <Button
+          color="primary"
+          href={props.href}
+          target={props.external ? "_blank" : ""}
+        >
+          {props.action}
+        </Button>
         {props.source && (
           <React.Fragment>
-            <div className={classes.spacer}/>
-            <Link className={classes.source} color="textSecondary" href={props.source} target="_blank">Source ↗</Link>
+            <div className={classes.spacer} />
+            <Link
+              className={classes.source}
+              color="textSecondary"
+              href={props.source}
+              target="_blank"
+            >
+              Source ↗
+            </Link>
           </React.Fragment>
         )}
       </CardActions>

@@ -1,9 +1,5 @@
 import React from "react";
-import { 
-  Card,
-  CardContent,
-  makeStyles
-} from "@material-ui/core";
+import { Card, CardContent, makeStyles } from "@material-ui/core";
 import { useThemeType } from "themes";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 
@@ -13,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     height: "100%",
-    [theme.breakpoints.down('sm')]: {
-      height: 600
+    [theme.breakpoints.down("sm")]: {
+      height: 600,
     },
   },
 }));

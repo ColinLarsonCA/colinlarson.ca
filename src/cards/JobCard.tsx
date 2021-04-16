@@ -1,5 +1,5 @@
 import React from "react";
-import { 
+import {
   Button,
   Card,
   CardActions,
@@ -29,14 +29,14 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     "& .MuiCardContent-root": {
       flex: 1,
-   }
+    },
   },
   readTime: {
     flex: 1,
   },
   source: {
     paddingRight: theme.spacing(1),
-  }
+  },
 }));
 
 export interface JobCardProps {
@@ -54,39 +54,45 @@ export function JobCard(props: JobCardProps) {
   const classes = useStyles();
   const chips: any[] = [];
   props.tags.forEach((tag: string) => {
-    chips.push(<Chip key={tag} label={tag} variant="outlined"/>);
-  })
+    chips.push(<Chip key={tag} label={tag} variant="outlined" />);
+  });
   return (
     <Card className={classes.card}>
       <CardHeader
         title={props.role}
-        subheader={props.start.format("MMM YYYY") + " to " + (props.end ? props.end.format("MMM YYYY") : "now")}
+        subheader={
+          props.start.format("MMM YYYY") +
+          " to " +
+          (props.end ? props.end.format("MMM YYYY") : "now")
+        }
       />
-      <CardMedia
-        className={classes.logo}
-        image={props.logo}
-      />
+      <CardMedia className={classes.logo} image={props.logo} />
       <CardContent>
         <Typography gutterBottom variant="h5" color="textSecondary">
           {props.company}
         </Typography>
-        <div className={classes.chips}>
-          {chips}
-        </div>
+        <div className={classes.chips}>{chips}</div>
       </CardContent>
       <CardActions>
-        <Button
-          color="primary"
-          href={"history/" + props.path}
-        >
+        <Button color="primary" href={"history/" + props.path}>
           Read More
         </Button>
-        <Typography className={classes.readTime} variant="caption" color="textSecondary">{moment.duration(props.readtime, "s").minutes() + "m"}</Typography>
+        <Typography
+          className={classes.readTime}
+          variant="caption"
+          color="textSecondary"
+        >
+          {moment.duration(props.readtime, "s").minutes() + "m"}
+        </Typography>
         <Link
           className={classes.source}
           variant="caption"
           color="textSecondary"
-          href={"https://github.com/ColinLarsonCA/work-history/blob/master/" + props.path + ".md"}
+          href={
+            "https://github.com/ColinLarsonCA/work-history/blob/master/" +
+            props.path +
+            ".md"
+          }
           target="_blank"
         >
           Source ↗

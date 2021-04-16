@@ -9,9 +9,9 @@ const useStyles = makeStyles((theme) => ({
   content: {
     maxWidth: theme.spacing(100),
     "& a": {
-      color: theme.palette.primary.main
-    }
-  }
+      color: theme.palette.primary.main,
+    },
+  },
 }));
 
 export function Job() {
@@ -19,28 +19,39 @@ export function Job() {
   const params = useParams();
   const [content, setContent] = useState("");
   useEffect(() => {
-    axios.get("https://raw.githubusercontent.com/ColinLarsonCA/work-history/master/" + params.key + ".md")
+    axios
+      .get(
+        "https://raw.githubusercontent.com/ColinLarsonCA/work-history/master/" +
+          params.key +
+          ".md"
+      )
       .then((res: any) => setContent(res.data))
       .catch((err: any) => console.error(err));
   }, [params.key]);
   return (
     <React.Fragment>
-      <Crumbs crumbs={[
-        {href: "/", label: "Home"},
-        {href: "/history", label: "Work History"},
-        {href: "/history/" + params.key, label: params.key.toUpperCase()}
-      ]} />
+      <Crumbs
+        crumbs={[
+          { href: "/", label: "Home" },
+          { href: "/history", label: "Work History" },
+          { href: "/history/" + params.key, label: params.key.toUpperCase() },
+        ]}
+      />
       <Grid container>
-        <Markdown className={classes.content} source={content}/>
+        <Markdown className={classes.content} source={content} />
       </Grid>
       <Link
-          variant="caption"
-          color="textSecondary"
-          href={"https://github.com/ColinLarsonCA/work-history/blob/master/" + params.key + ".md"}
-          target="_blank"
-        >
-          Source ↗
-        </Link>
+        variant="caption"
+        color="textSecondary"
+        href={
+          "https://github.com/ColinLarsonCA/work-history/blob/master/" +
+          params.key +
+          ".md"
+        }
+        target="_blank"
+      >
+        Source ↗
+      </Link>
     </React.Fragment>
   );
 }
