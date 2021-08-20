@@ -11,7 +11,9 @@ import {
   Typography,
   makeStyles,
 } from "@material-ui/core";
-import moment, { Moment } from "moment";
+import dayjs, { Dayjs } from "dayjs";
+import duration from 'dayjs/plugin/duration';
+dayjs.extend(duration);
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -46,8 +48,8 @@ export interface JobCardProps {
   logo: string;
   tags: string[];
   readtime: number;
-  start: Moment;
-  end?: Moment;
+  start: Dayjs;
+  end?: Dayjs;
 }
 
 export function JobCard(props: JobCardProps) {
@@ -82,7 +84,7 @@ export function JobCard(props: JobCardProps) {
           variant="caption"
           color="textSecondary"
         >
-          {moment.duration(props.readtime, "s").minutes() + "m"}
+          {dayjs.duration(props.readtime, "s").minutes() + "m"}
         </Typography>
         <Link
           className={classes.source}

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Grid, makeStyles } from "@material-ui/core";
 import axios from "axios";
-import moment from "moment";
 import { IntroCard, JobCard, JobCardProps } from "cards";
 import { Crumbs } from "common";
+import dayjs from "dayjs";
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+dayjs.extend(customParseFormat);
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -30,8 +32,8 @@ export function History() {
             company: job.company,
             logo: job.logo,
             tags: job.tags.sort(),
-            start: moment(job.start),
-            end: moment(job.end),
+            start: dayjs(job.start, "MMM YYYY"),
+            end: job.end ? dayjs(job.end, "MMM YYYY") : dayjs(),
             readtime: job.readtime,
           })
         );
