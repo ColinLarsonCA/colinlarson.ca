@@ -23,7 +23,7 @@ export function Home() {
         <Grid item container md={12} lg={4}>
           <IntroCard
             title="Experiments"
-            text={`Occasionally I like to tinker with a personal project to try out a new technology or make something useful for myself. I've collected these under the Experiments section, take a look to see if there's anything there you might find useful as well! My latest experiment is a finacial planning website named Will-o'-Wisp after the fiery spirit in Dungeons & Dragons, check it out at https://willowisp.ca`}
+            text={`Occasionally I like to tinker with a personal project to try out a new technology or make something useful for myself. I've collected these under the Experiments section, take a look to see if there's anything there you might find useful as well! My latest experiment is a financial planning website named Will-o'-Wisp after the fiery spirit in Dungeons & Dragons, check it out at https://willowisp.ca`}
             action="Start Tinkering"
             href="/experiments"
           />
