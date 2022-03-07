@@ -26,7 +26,7 @@ export function Experiments() {
         <Grid item container className={classes.card} xs={12} md={6}>
           <IntroCard
             title="Will-o'-Wisp"
-            text={`Will-o'-Wisp is a financial planning website I created to help me plan for eventual retirement after I was inspired by the FIRE (Finacial Independence, Retire Early) movement. Other retirement planners I found were either daunting spreadsheets, did not persist inputs in local storage, or required sign up/payment for their services. So I created my own and hosted it for others to use.`}
+            text={`Will-o'-Wisp is a financial planning website I created to help me plan for eventual retirement after I was inspired by the FIRE (Financial Independence, Retire Early) movement. Other retirement planners I found were either daunting spreadsheets, did not persist inputs in local storage, or required sign up/payment for their services. So I created my own and hosted it for others to use.`}
             action="Check it out ↗"
             href="https://willowisp.ca"
             external
