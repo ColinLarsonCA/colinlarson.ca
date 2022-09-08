@@ -1,11 +1,20 @@
 import React from "react";
-import { Breadcrumbs, Link, makeStyles } from "@material-ui/core";
-import { NavigateNext } from "@material-ui/icons";
+import { styled } from '@mui/material/styles';
+import { Breadcrumbs, Link } from "@mui/material";
+import { NavigateNext } from "@mui/icons-material";
 
-const useStyles = makeStyles((theme) => ({
-  crumbs: {
+const PREFIX = 'Crumbs';
+const classes = {
+  crumbs: `${PREFIX}-crumbs`
+};
+const StyledBreadcrumbs = styled(Breadcrumbs)((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.crumbs}`]: {
     paddingBottom: theme.spacing(1),
-  },
+  }
 }));
 
 interface Crumb {
@@ -18,7 +27,6 @@ interface CrumbsProps {
 }
 
 export function Crumbs(props: CrumbsProps) {
-  const classes = useStyles();
   const links: any[] = [];
   props.crumbs.forEach((crumb) => {
     links.push(
@@ -28,11 +36,11 @@ export function Crumbs(props: CrumbsProps) {
     );
   });
   return (
-    <Breadcrumbs
+    <StyledBreadcrumbs
       className={classes.crumbs}
       separator={<NavigateNext fontSize="small" />}
     >
       {links}
-    </Breadcrumbs>
+    </StyledBreadcrumbs>
   );
 }

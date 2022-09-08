@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import {
   AppBar,
   Button,
@@ -10,14 +11,13 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-  makeStyles,
   Avatar,
-} from "@material-ui/core";
+} from "@mui/material";
 import {
   Brightness4 as Moon,
   BrightnessHigh as Sun,
   Email,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import Me from "assets/me.jpeg";
 import Twitter from "assets/twitter.png";
 import GithubBlack from "assets/github-black.png";
@@ -29,62 +29,84 @@ import Instagram from "assets/instagram.png";
 import { ImgIcon } from "common";
 import { useWidth } from "hooks";
 import { useIsDark } from "themes";
-import { Theme } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  drawer: {
+const PREFIX = 'About';
+const classes = {
+  drawer: `${PREFIX}-drawer`,
+  namebar: `${PREFIX}-namebar`,
+  linkbar: `${PREFIX}-linkbar`,
+  avatar: `${PREFIX}-avatar`,
+  smallAvatar: `${PREFIX}-smallAvatar`,
+  nameContainer: `${PREFIX}-nameContainer`,
+  name: `${PREFIX}-name`,
+  desc: `${PREFIX}-desc`,
+  divider: `${PREFIX}-divider`,
+  socials: `${PREFIX}-socials`,
+  button: `${PREFIX}-button`,
+  spacer: `${PREFIX}-spacer`,
+  bottom: `${PREFIX}-bottom`
+};
+const StyledDrawer = styled(Drawer)(({theme}) => ({
+  [`&.${classes.drawer}`]: {
     display: "flex",
     width: "24em",
     flexShrink: 0,
     textAlign: "center",
   },
-  namebar: {
+
+  [`& .${classes.namebar}`]: {
     padding: theme.spacing(1),
     paddingBottom: 0,
   },
-  linkbar: {
+
+  [`& .${classes.linkbar}`]: {
     padding: theme.spacing(1),
     paddingTop: 0,
   },
-  avatar: {
+
+  [`& .${classes.avatar}`]: {
     display: "block",
     margin: theme.spacing(1) + "px auto",
     height: 240,
     width: 240,
   },
-  smallAvatar: {
+
+  [`& .${classes.smallAvatar}`]: {
     marginLeft: theme.spacing(2),
     height: 60,
     width: 60,
   },
-  nameContainer: {
+
+  [`& .${classes.nameContainer}`]: {
     padding: theme.spacing(2),
   },
-  name: {
+
+  [`& .${classes.name}`]: {
     paddingTop: theme.spacing(1),
   },
-  desc: {
+
+  [`& .${classes.desc}`]: {
     color: theme.palette.text.secondary,
   },
-  divider: {
+
+  [`& .${classes.divider}`]: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
-  socials: {
-    display: "flex",
-    alignContent: "center",
-  },
-  button: {
+
+  [`& .${classes.button}`]: {
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     marginTop: theme.spacing(1),
   },
-  spacer: {
+
+  [`& .${classes.spacer}`]: {
     flexGrow: 1,
   },
-  bottom: {
+
+  [`& .${classes.bottom}`]: {
     paddingRight: theme.spacing(2),
-  },
+  }
 }));
 
 interface Props {
@@ -130,10 +152,10 @@ const iconMap: Map<Site, IconData> = new Map([
 export function About(props: Props) {
   const width = useWidth();
   const isDark = useIsDark();
-  const classes = useStyles();
+
   const icon = (site: Site) => {
     return (
-      <Tooltip title={site}>
+      <Tooltip title={site.split(' ')[0]}>
         <IconButton href={iconMap.get(site)?.href || ""} target="_blank">
           <ImgIcon alt={site} src={iconMap.get(site)?.src || ""} />
         </IconButton>
@@ -187,7 +209,7 @@ export function About(props: Props) {
     );
   }
   return (
-    <Drawer
+    <StyledDrawer
       className={classes.drawer}
       open={true}
       variant="permanent"
@@ -206,7 +228,7 @@ export function About(props: Props) {
         Software Developer
       </Typography>
       <Divider className={classes.divider} variant="middle" />
-      <Grid className={classes.socials} container justify="center">
+      <Grid container justifyContent="center">
         <Grid item xs={2} />
         <Grid item xs={2}>
           {icon("Twitter")}
@@ -273,7 +295,7 @@ export function About(props: Props) {
         <Grid item xs={2}>
           {modeToggle()}
         </Grid>
-        <Grid container item xs={10} alignItems="center" justify="flex-end">
+        <Grid container item xs={10} alignItems="center" justifyContent="flex-end">
           <Grid item>
             <Link
               color="textSecondary"
@@ -285,6 +307,6 @@ export function About(props: Props) {
           </Grid>
         </Grid>
       </Grid>
-    </Drawer>
+    </StyledDrawer>
   );
 }

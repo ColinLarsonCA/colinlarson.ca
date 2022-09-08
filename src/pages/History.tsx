@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { Grid, makeStyles } from "@material-ui/core";
+import { styled } from '@mui/material/styles';
+import { Grid } from "@mui/material";
 import axios from "axios";
 import { IntroCard, JobCard, JobCardProps } from "cards";
 import { Crumbs } from "common";
 import dayjs from "dayjs";
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-dayjs.extend(customParseFormat);
 
-const useStyles = makeStyles((theme) => ({
-  card: {
+const PREFIX = 'History';
+const classes = {
+  card: `${PREFIX}-card`,
+  source: `${PREFIX}-source`
+};
+const StyledPage = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.card}`]: {
     maxWidth: theme.spacing(100),
   },
-  source: {
+
+  [`& .${classes.source}`]: {
     padding: theme.spacing(1),
-  },
+  }
 }));
+
+dayjs.extend(customParseFormat);
 
 export function History() {
   const [jobs, setJobs] = useState<JobCardProps[]>();
@@ -43,7 +55,7 @@ export function History() {
         console.error(err);
       });
   }, []);
-  const classes = useStyles();
+
 
   const numCards = jobs ? jobs.length + 1 : 0;
   const cards: any[] = [];
@@ -77,16 +89,16 @@ export function History() {
   cards.push(card({}, "intro", true));
   jobs?.forEach((job: any, i: number) => cards.push(card(job, job.path)));
   return (
-    <React.Fragment>
+    <StyledPage>
       <Crumbs
         crumbs={[
           { href: "/", label: "Home" },
           { href: "/history", label: "Work History" },
         ]}
       />
-      <Grid container spacing={2} justify="center">
+      <Grid container spacing={2} justifyContent="center">
         {cards}
       </Grid>
-    </React.Fragment>
+    </StyledPage>
   );
 }

@@ -1,31 +1,41 @@
 import React from "react";
-import { Card, CardContent, makeStyles } from "@material-ui/core";
-import { useThemeType } from "themes";
+import { styled } from '@mui/material/styles';
+import { Card, CardContent } from "@mui/material";
+import { useThemeMode } from "themes";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 
-const useStyles = makeStyles((theme) => ({
-  card: {
+const PREFIX = 'TwitterCard';
+const classes = {
+  card: `${PREFIX}-card`,
+  content: `${PREFIX}-content`
+};
+const StyledCard = styled(Card)((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.card}`]: {
     width: "100%",
   },
-  content: {
+
+  [`& .${classes.content}`]: {
     height: "100%",
     [theme.breakpoints.down("sm")]: {
       height: 600,
     },
-  },
+  }
 }));
 
 export function TwitterCard() {
-  const classes = useStyles();
-  const themeType = useThemeType();
+  const themeMode = useThemeMode();
   return (
-    <Card className={classes.card}>
+    <StyledCard className={classes.card}>
       <CardContent className={classes.content}>
         <TwitterTimelineEmbed
-          key={themeType}
+          key={themeMode}
           sourceType="profile"
           screenName="colintxt"
-          theme={themeType}
+          theme={themeMode}
           transparent
           noFooter
           noBorders
@@ -33,6 +43,6 @@ export function TwitterCard() {
           autoHeight
         />
       </CardContent>
-    </Card>
+    </StyledCard>
   );
 }

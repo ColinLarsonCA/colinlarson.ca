@@ -1,17 +1,11 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
-// import { Twitch, useIsLiveOnTwitch } from "twitch";
-import { IntroCard, TwitterCard } from "cards";
+import { Grid } from "@mui/material";
+import { IntroCard } from "cards";
 
 export function Home() {
   return (
-    <React.Fragment>
-      <Grid container spacing={2} justify="flex-start">
-        {/* {useIsLiveOnTwitch &&
-          <Grid item xs={12}>
-            <Twitch />
-          </Grid>
-        } */}
+    <div>
+      <Grid container spacing={2} justifyContent="flex-start">
         <Grid item container md={12} lg={4}>
           <IntroCard
             title="Work History"
@@ -29,9 +23,8 @@ export function Home() {
           />
         </Grid>
         <Grid item container md={12} lg={4}>
-          <TwitterCard />
         </Grid>
       </Grid>
-    </React.Fragment>
+    </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import {
   Card,
   Button,
@@ -6,10 +7,37 @@ import {
   CardContent,
   CardHeader,
   Typography,
-  makeStyles,
   Link,
-} from "@material-ui/core";
+} from "@mui/material";
 import Markdown from "react-markdown";
+
+const PREFIX = 'IntroCard';
+const classes = {
+  card: `${PREFIX}-card`,
+  spacer: `${PREFIX}-spacer`,
+  source: `${PREFIX}-source`
+};
+const StyledCard = styled(Card)((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.card}`]: {
+    display: "flex",
+    flexDirection: "column",
+    "& .MuiCardContent-root": {
+      flex: 1,
+    },
+  },
+
+  [`& .${classes.spacer}`]: {
+    flex: 1,
+  },
+
+  [`& .${classes.source}`]: {
+    paddingRight: theme.spacing(1),
+  }
+}));
 
 interface IntroCardProps {
   title: string;
@@ -20,30 +48,14 @@ interface IntroCardProps {
   source?: string;
 }
 
-const useStyles = makeStyles((theme) => ({
-  card: {
-    display: "flex",
-    flexDirection: "column",
-    "& .MuiCardContent-root": {
-      flex: 1,
-    },
-  },
-  spacer: {
-    flex: 1,
-  },
-  source: {
-    paddingRight: theme.spacing(1),
-  },
-}));
-
 export function IntroCard(props: IntroCardProps) {
-  const classes = useStyles();
+
   return (
-    <Card className={classes.card}>
+    <StyledCard className={classes.card}>
       <CardHeader title={props.title} />
       <CardContent>
         <Typography gutterBottom variant="h5" color="textSecondary">
-          <Markdown source={props.text} />
+          <Markdown children={props.text} />
         </Typography>
       </CardContent>
       <CardActions>
@@ -68,6 +80,6 @@ export function IntroCard(props: IntroCardProps) {
           </React.Fragment>
         )}
       </CardActions>
-    </Card>
+    </StyledCard>
   );
 }

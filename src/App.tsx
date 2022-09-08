@@ -1,47 +1,53 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
-import {
-  createMuiTheme,
-  CssBaseline,
-  makeStyles,
-  ThemeProvider as MaterialThemeProvider,
-} from "@material-ui/core";
-import { indigo, orange } from "@material-ui/core/colors";
+import { styled } from '@mui/material/styles';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { About } from "about";
 import { Experiments, History, Home, Job } from "pages";
+import { createTheme } from "@mui/material/styles";
+import { indigo, orange } from "@mui/material/colors";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'App';
+const classes = {
+  root: `${PREFIX}-root`,
+  content: `${PREFIX}-content`
+};
+const StyledApp = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     display: "flex",
   },
-  content: {
+
+  [`& .${classes.content}`]: {
     flexGrow: 1,
     padding: theme.spacing(2),
     [theme.breakpoints.down("md")]: {
       marginTop: theme.spacing(20),
     },
-  },
+  }
 }));
 
 function App() {
-  const classes = useStyles();
   const initialTheme = () =>
     localStorage.getItem("theme") === "light" ? "light" : "dark";
   const [theme, setTheme] = useState(initialTheme());
   const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
   useEffect(() => localStorage.setItem("theme", theme), [theme]);
-  const light = createMuiTheme({
+  const light = createTheme({
     palette: {
-      type: "light",
+      mode: "light",
       primary: indigo,
       secondary: orange,
     },
   });
-  const dark = createMuiTheme({
+  const dark = createTheme({
     palette: {
-      type: "dark",
+      mode: "dark",
       background: {
+        default: '#353535',
         paper: "#353535",
       },
       primary: orange,
@@ -49,38 +55,23 @@ function App() {
     },
   });
   return (
-    <MaterialThemeProvider theme={theme === "light" ? light : dark}>
-      <div className={classes.root}>
+    <ThemeProvider theme={theme === "light" ? light : dark}>
+      <StyledApp className={classes.root}>
         <CssBaseline />
         <About toggleTheme={toggleTheme} />
         <div className={classes.content}>
-          <Router>
-            <Switch>
-              <Route path="/experiments">
-                <Experiments />
+          <BrowserRouter>
+            <Routes>
+              <Route path="experiments" element={<Experiments />} />
+              <Route path="history" element={<History />}>
+                <Route path=":key" element={<Job/>}/>
               </Route>
-              <Route path="/history/:key">
-                <Job />
-              </Route>
-              <Route path="/history">
-                <History />
-              </Route>
-              <Route path="/">
-                <Home />
-              </Route>
-            </Switch>
-          </Router>
+              <Route path="/" element={<Home/>}/>
+            </Routes>
+          </BrowserRouter>
         </div>
-        {/* <Snackbar open={true}>
-          <Alert
-            severity="info"
-            onClose={() => {}}
-          >
-            <Typography>Check out my <Link href="https://kickstarter.com" target="_blank">Kickstarter</Link> and make sure to like and subscribe!</Typography>
-          </Alert>
-        </Snackbar> */}
-      </div>
-    </MaterialThemeProvider>
+      </StyledApp>
+    </ThemeProvider>
   );
 }
 

@@ -1,28 +1,39 @@
-import React from "react";
-import { Grid, makeStyles } from "@material-ui/core";
+import React from 'react';
+import { styled } from '@mui/material/styles';
+import { Grid } from "@mui/material";
 import { IntroCard } from "cards";
 import { Crumbs } from "common";
 
-const useStyles = makeStyles((theme) => ({
-  card: {
+const PREFIX = 'Experiments';
+const classes = {
+  card: `${PREFIX}-card`,
+  source: `${PREFIX}-source`
+};
+const StyledPage = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.card}`]: {
     maxWidth: theme.spacing(100),
   },
-  source: {
+
+  [`& .${classes.source}`]: {
     padding: theme.spacing(1),
-  },
+  }
 }));
 
 export function Experiments() {
-  const classes = useStyles();
+
   return (
-    <React.Fragment>
+    <StyledPage>
       <Crumbs
         crumbs={[
           { href: "/", label: "Home" },
           { href: "/experiments", label: "Experiments" },
         ]}
       />
-      <Grid container spacing={2} justify="center">
+      <Grid container spacing={2} justifyContent="center">
         <Grid item container className={classes.card} xs={12} md={6}>
           <IntroCard
             title="Will-o'-Wisp"
@@ -52,6 +63,6 @@ export function Experiments() {
           />
         </Grid>
       </Grid>
-    </React.Fragment>
+    </StyledPage>
   );
 }

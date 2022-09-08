@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Link, makeStyles } from "@material-ui/core";
+import { styled } from '@mui/material/styles';
+import { Grid, Link } from "@mui/material";
 import { useParams } from "react-router";
 import Markdown from "react-markdown";
 import axios from "axios";
 import { Crumbs } from "common";
 
-const useStyles = makeStyles((theme) => ({
-  content: {
+const PREFIX = 'Job';
+const classes = {
+  content: `${PREFIX}-content`
+};
+const StyledPage = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.content}`]: {
     maxWidth: theme.spacing(100),
     "& a": {
       color: theme.palette.primary.main,
     },
-  },
+  }
 }));
 
 export function Job() {
-  const classes = useStyles();
   const params = useParams();
   const [content, setContent] = useState("");
   useEffect(() => {
@@ -29,16 +37,16 @@ export function Job() {
       .catch((err: any) => console.error(err));
   }, [params.key]);
   return (
-    <React.Fragment>
+    <StyledPage>
       <Crumbs
         crumbs={[
           { href: "/", label: "Home" },
           { href: "/history", label: "Work History" },
-          { href: "/history/" + params.key, label: params.key.toUpperCase() },
+          { href: "/history/" + params.key, label: (params.key ?? '').toUpperCase() },
         ]}
       />
       <Grid container>
-        <Markdown className={classes.content} source={content} />
+        <Markdown className={classes.content} children={content} />
       </Grid>
       <Link
         variant="caption"
@@ -52,6 +60,6 @@ export function Job() {
       >
         Source ↗
       </Link>
-    </React.Fragment>
+    </StyledPage>
   );
 }
