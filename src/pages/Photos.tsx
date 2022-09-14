@@ -7,7 +7,7 @@ import { Crumbs } from "common";
 import dayjs from "dayjs";
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 
-const PREFIX = 'History';
+const PREFIX = 'Photos';
 const classes = {
   card: `${PREFIX}-card`,
   source: `${PREFIX}-source`
@@ -28,7 +28,7 @@ const StyledPage = styled('div')((
 
 dayjs.extend(customParseFormat);
 
-export function History() {
+export function Photos() {
   const [jobs, setJobs] = useState<JobCardProps[]>();
   useEffect(() => {
     axios
@@ -45,7 +45,7 @@ export function History() {
             logo: job.logo,
             tags: job.tags.sort(),
             start: dayjs(job.start, "MMM YYYY"),
-            end: job.end ? dayjs(job.end, "MMM YYYY") : undefined,
+            end: job.end ? dayjs(job.end, "MMM YYYY") : dayjs(),
             readtime: job.readtime,
           })
         );
@@ -86,14 +86,14 @@ export function History() {
       </Grid>
     );
   };
-  // cards.push(card({}, "intro", true));
+  cards.push(card({}, "intro", true));
   jobs?.forEach((job: any, i: number) => cards.push(card(job, job.path)));
   return (
     <StyledPage>
       <Crumbs
         crumbs={[
           { href: "/", label: "Home" },
-          { href: "/history", label: "Work History" },
+          { href: "/photos", label: "Photos" },
         ]}
       />
       <Grid container spacing={2} justifyContent="center">

@@ -5,7 +5,8 @@ import { About } from "about";
 import { Experiments, History, Home, Job } from "pages";
 import { createTheme } from "@mui/material/styles";
 import { indigo, orange } from "@mui/material/colors";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
+import { Photos } from "pages/Photos";
 
 const PREFIX = 'App';
 const classes = {
@@ -56,19 +57,22 @@ function App() {
   });
   return (
     <ThemeProvider theme={theme === "light" ? light : dark}>
-      <StyledApp className={classes.root}>
-        <CssBaseline />
-        <About toggleTheme={toggleTheme} />
-        <div className={classes.content}>
-          <BrowserRouter>
-            <Routes>
-              <Route path="experiments" element={<Experiments />} />
-              <Route path="history" element={<History />}>
-                <Route path=":key" element={<Job/>}/>
-              </Route>
-              <Route path="/" element={<Home/>}/>
-            </Routes>
-          </BrowserRouter>
+      <StyledApp>
+        <div className={classes.root}>
+          <CssBaseline />
+          <About toggleTheme={toggleTheme} />
+          <Box component="main" className={classes.content}>
+            <BrowserRouter>
+              <Routes>
+                <Route path="experiments" element={<Experiments />} />
+                <Route path="history" element={<History />}>
+                  <Route path=":key" element={<Job/>}/>
+                </Route>
+                <Route path="photos" element={<Photos />}></Route>
+                <Route path="/" element={<Home/>}/>
+              </Routes>
+            </BrowserRouter>
+          </Box>
         </div>
       </StyledApp>
     </ThemeProvider>

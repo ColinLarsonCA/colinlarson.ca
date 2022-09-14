@@ -113,6 +113,7 @@ export function JobCard(props: JobCardProps) {
             ".md"
           }
           target="_blank"
+          underline="hover"
         >
           Source ↗
         </Link>

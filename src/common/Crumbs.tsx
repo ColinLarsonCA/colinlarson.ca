@@ -30,7 +30,7 @@ export function Crumbs(props: CrumbsProps) {
   const links: any[] = [];
   props.crumbs.forEach((crumb) => {
     links.push(
-      <Link key={crumb.label} color="inherit" href={crumb.href}>
+      <Link key={crumb.label} color="inherit" href={crumb.href} underline="hover">
         {crumb.label}
       </Link>
     );

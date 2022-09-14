@@ -14,6 +14,7 @@ const StyledIcon = styled(Icon)((
 ) => ({
   [`&.${classes.root}`]: {
     textAlign: "center",
+    display: "flex"
   },
 
   [`& .${classes.image}`]: {

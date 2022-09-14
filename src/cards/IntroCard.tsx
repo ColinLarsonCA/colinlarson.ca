@@ -74,6 +74,7 @@ export function IntroCard(props: IntroCardProps) {
               color="textSecondary"
               href={props.source}
               target="_blank"
+              underline="hover"
             >
               Source ↗
             </Link>

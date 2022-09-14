@@ -57,6 +57,7 @@ export function Job() {
           ".md"
         }
         target="_blank"
+        underline="hover"
       >
         Source ↗
       </Link>
