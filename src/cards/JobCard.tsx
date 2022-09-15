@@ -93,7 +93,7 @@ export function JobCard(props: JobCardProps) {
         <div className={classes.chips}>{chips}</div>
       </CardContent>
       <CardActions>
-        <Button color="primary" href={"history/" + props.path}>
+        <Button color="primary" href={props.path}>
           Read More
         </Button>
         <Typography

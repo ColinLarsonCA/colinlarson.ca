@@ -36,6 +36,12 @@ const LinkBehavior = forwardRef<
   Omit<LinkProps, 'to'> & { href: LinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
+  const hrefStr = href.toString();
+  const isExternal = hrefStr.startsWith("http") || hrefStr.startsWith("mailto:");
+  if (isExternal) {
+    // eslint-disable-next-line
+    return <a href={hrefStr} {...other} />;
+  }
   return <Link ref={ref} to={href} {...other} />;
 });
 
@@ -47,7 +53,7 @@ const theme = (palette: PaletteOptions): Theme => {
         defaultProps: {
           LinkComponent: LinkBehavior,
         },
-      },
+      }
     },
   })
 }

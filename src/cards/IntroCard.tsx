@@ -49,7 +49,6 @@ interface IntroCardProps {
 }
 
 export function IntroCard(props: IntroCardProps) {
-
   return (
     <StyledCard className={classes.card}>
       <CardHeader title={props.title} />

@@ -30,7 +30,7 @@ export const iconMap: Map<Site, IconData> = new Map([
     "Instagram",
     { href: "https://instagram.com/colinlarson.ca", src: Instagram },
   ],
-  ["Twitch", { href: "https://twitch.tv/colincasts", src: Twitch }],
+  ["Twitch", { href: "https://twitch.tv/saiaiaiai", src: Twitch }],
   [
     "Github White",
     { href: "https://github.com/ColinLarsonCA", src: GithubWhite },

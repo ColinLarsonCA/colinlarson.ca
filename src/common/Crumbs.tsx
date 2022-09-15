@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
-import { Breadcrumbs, Link } from "@mui/material";
+import { Breadcrumbs, Button, Link } from "@mui/material";
 import { NavigateNext } from "@mui/icons-material";
 
 const PREFIX = 'Crumbs';
@@ -30,10 +30,15 @@ export function Crumbs(props: CrumbsProps) {
   const links: any[] = [];
   props.crumbs.forEach((crumb) => {
     links.push(
-      <Link key={crumb.label} color="inherit" href={crumb.href} underline="hover">
+      <Button 
+        key={crumb.label}
+        variant="text"
+        color="primary"
+        href={crumb.href}
+      >
         {crumb.label}
-      </Link>
-    );
+      </Button>
+    )
   });
   return (
     <StyledBreadcrumbs
