@@ -24,7 +24,6 @@ const StyledPage = styled('div')((
 }));
 
 export function Experiments() {
-
   return (
     <StyledPage>
       <Crumbs
