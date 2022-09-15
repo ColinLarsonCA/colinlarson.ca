@@ -1,26 +1,22 @@
-import React from 'react';
-import { styled } from '@mui/material/styles';
+import React from "react";
+import { styled } from "@mui/material/styles";
 import { Grid } from "@mui/material";
 import { IntroCard } from "cards";
 import { Crumbs } from "common";
 
-const PREFIX = 'Experiments';
+const PREFIX = "Experiments";
 const classes = {
   card: `${PREFIX}-card`,
-  source: `${PREFIX}-source`
+  source: `${PREFIX}-source`,
 };
-const StyledPage = styled('div')((
-  {
-    theme
-  }
-) => ({
+const StyledPage = styled("div")(({ theme }) => ({
   [`& .${classes.card}`]: {
     maxWidth: theme.spacing(100),
   },
 
   [`& .${classes.source}`]: {
     padding: theme.spacing(1),
-  }
+  },
 }));
 
 export function Experiments() {

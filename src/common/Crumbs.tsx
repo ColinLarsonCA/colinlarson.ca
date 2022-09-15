@@ -1,20 +1,16 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { Breadcrumbs, Button, Link } from "@mui/material";
 import { NavigateNext } from "@mui/icons-material";
 
-const PREFIX = 'Crumbs';
+const PREFIX = "Crumbs";
 const classes = {
-  crumbs: `${PREFIX}-crumbs`
+  crumbs: `${PREFIX}-crumbs`,
 };
-const StyledBreadcrumbs = styled(Breadcrumbs)((
-  {
-    theme
-  }
-) => ({
+const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
   [`&.${classes.crumbs}`]: {
     paddingBottom: theme.spacing(1),
-  }
+  },
 }));
 
 interface Crumb {
@@ -30,7 +26,7 @@ export function Crumbs(props: CrumbsProps) {
   const links: any[] = [];
   props.crumbs.forEach((crumb) => {
     links.push(
-      <Button 
+      <Button
         key={crumb.label}
         variant="text"
         color="primary"
@@ -38,7 +34,7 @@ export function Crumbs(props: CrumbsProps) {
       >
         {crumb.label}
       </Button>
-    )
+    );
   });
   return (
     <StyledBreadcrumbs

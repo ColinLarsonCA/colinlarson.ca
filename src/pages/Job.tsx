@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { Grid, Link } from "@mui/material";
 import { useParams } from "react-router";
 import Markdown from "react-markdown";
 import axios from "axios";
 import { Crumbs } from "common";
 
-const PREFIX = 'Job';
+const PREFIX = "Job";
 const classes = {
-  content: `${PREFIX}-content`
+  content: `${PREFIX}-content`,
 };
-const StyledPage = styled('div')((
-  {
-    theme
-  }
-) => ({
+const StyledPage = styled("div")(({ theme }) => ({
   [`& .${classes.content}`]: {
     maxWidth: theme.spacing(100),
     "& a": {
       color: theme.palette.primary.main,
     },
-  }
+  },
 }));
 
 export function Job() {
@@ -42,7 +38,10 @@ export function Job() {
         crumbs={[
           { href: "/", label: "Home" },
           { href: "/history", label: "Work History" },
-          { href: "/history/" + params.key, label: (params.key ?? '').toUpperCase() },
+          {
+            href: "/history/" + params.key,
+            label: (params.key ?? "").toUpperCase(),
+          },
         ]}
       />
       <Grid container>

@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   AppBar,
   Grid,
@@ -17,14 +17,14 @@ import {
   Home as HomeIcon,
   WorkHistory,
   Science,
-  PhotoCamera
+  PhotoCamera,
 } from "@mui/icons-material";
 import Me from "assets/me.jpeg";
 import { useIsDark } from "themes";
 import { socialIcon } from "./socials";
 import { Colin } from "./info";
 
-const PREFIX = 'About';
+const PREFIX = "About";
 const classes = {
   namebar: `${PREFIX}-namebar`,
   linkbar: `${PREFIX}-linkbar`,
@@ -33,7 +33,7 @@ const classes = {
   nameContainer: `${PREFIX}-nameContainer`,
   desc: `${PREFIX}-desc`,
 };
-const StyledAppBar = styled(AppBar)(({theme}) => ({
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
   [`& .${classes.namebar}`]: {
     padding: theme.spacing(1),
     paddingBottom: 0,
@@ -80,60 +80,60 @@ export function TopBar(props: Props) {
     );
   };
   return (
-      <StyledAppBar color="inherit" position="fixed">
+    <StyledAppBar color="inherit" position="fixed">
       <Toolbar className={classes.namebar}>
-          <Avatar
-            alt={Colin.name}
-            src={Me}
-            className={`${classes.avatar} ${classes.smallAvatar}`}
-            variant={"square"}
-          />
-          <Grid className={classes.nameContainer} container>
+        <Avatar
+          alt={Colin.name}
+          src={Me}
+          className={`${classes.avatar} ${classes.smallAvatar}`}
+          variant={"square"}
+        />
+        <Grid className={classes.nameContainer} container>
           <Grid item xs={12}>
-              <Typography variant="h6">{Colin.name}</Typography>
+            <Typography variant="h6">{Colin.name}</Typography>
           </Grid>
           <Grid item xs={12}>
-              <Typography className={classes.desc} variant="caption">
+            <Typography className={classes.desc} variant="caption">
               {Colin.title}
-              </Typography>
+            </Typography>
           </Grid>
-          </Grid>
-          {modeToggle()}
+        </Grid>
+        {modeToggle()}
       </Toolbar>
       <Toolbar className={classes.linkbar}>
-          <Tooltip title="Home">
-            <IconButton href="/">
-              <HomeIcon />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Work History">
-            <IconButton href="/history">
-              <WorkHistory />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Experiments">
-            <IconButton href="/experiments">
-              <Science />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Photos">
-            <IconButton href="/photos">
-              <PhotoCamera />
-            </IconButton>
-          </Tooltip>
-          <Divider variant="middle" flexItem />
-          {socialIcon("Twitter")}
-          {socialIcon("Facebook")}
-          {socialIcon("Instagram")}
-          {socialIcon("Twitch")}
-          {socialIcon(isDark ? "Github White" : "Github Black")}
-          {socialIcon("LinkedIn")}
-          <Tooltip title="Email">
-          <IconButton href={Colin.mailto} target="_blank">
-              <Email />
+        <Tooltip title="Home">
+          <IconButton href="/">
+            <HomeIcon />
           </IconButton>
-          </Tooltip>
+        </Tooltip>
+        <Tooltip title="Work History">
+          <IconButton href="/history">
+            <WorkHistory />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Experiments">
+          <IconButton href="/experiments">
+            <Science />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Photos">
+          <IconButton href="/photos">
+            <PhotoCamera />
+          </IconButton>
+        </Tooltip>
+        <Divider variant="middle" flexItem />
+        {socialIcon("Twitter")}
+        {socialIcon("Facebook")}
+        {socialIcon("Instagram")}
+        {socialIcon("Twitch")}
+        {socialIcon(isDark ? "Github White" : "Github Black")}
+        {socialIcon("LinkedIn")}
+        <Tooltip title="Email">
+          <IconButton href={Colin.mailto} target="_blank">
+            <Email />
+          </IconButton>
+        </Tooltip>
       </Toolbar>
-      </StyledAppBar>
+    </StyledAppBar>
   );
 }

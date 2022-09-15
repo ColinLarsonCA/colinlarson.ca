@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Button,
   Divider,
@@ -18,14 +18,14 @@ import {
   Home as HomeIcon,
   WorkHistory,
   Science,
-  PhotoCamera
+  PhotoCamera,
 } from "@mui/icons-material";
 import Me from "assets/me.jpeg";
 import { useIsDark } from "themes";
 import { socialIcon } from "./socials";
 import { Colin } from "./info";
 
-const PREFIX = 'About';
+const PREFIX = "About";
 const classes = {
   drawer: `${PREFIX}-drawer`,
   namebar: `${PREFIX}-namebar`,
@@ -39,18 +39,18 @@ const classes = {
   socials: `${PREFIX}-socials`,
   button: `${PREFIX}-button`,
   spacer: `${PREFIX}-spacer`,
-  bottom: `${PREFIX}-bottom`
+  bottom: `${PREFIX}-bottom`,
 };
 const drawerWidth = 336;
-const StyledDrawer = styled(Drawer)(({theme}) => ({
+const StyledDrawer = styled(Drawer)(({ theme }) => ({
   [`&.${classes.drawer}`]: {
     display: "flex",
     width: drawerWidth,
     flexShrink: 0,
     textAlign: "center",
-    '& .MuiDrawer-paper': {
+    "& .MuiDrawer-paper": {
       width: drawerWidth,
-      boxSizing: 'border-box',
+      boxSizing: "border-box",
     },
   },
 
@@ -106,7 +106,7 @@ const StyledDrawer = styled(Drawer)(({theme}) => ({
 
   [`& .${classes.bottom}`]: {
     paddingRight: theme.spacing(2),
-  }
+  },
 }));
 
 interface Props {
@@ -181,7 +181,7 @@ export function SideBar(props: Props) {
         color="primary"
         disableElevation
         href="/"
-        startIcon={<HomeIcon/>}
+        startIcon={<HomeIcon />}
       >
         Home
       </Button>
@@ -191,7 +191,7 @@ export function SideBar(props: Props) {
         color="primary"
         disableElevation
         href="/history"
-        startIcon={<WorkHistory/>}
+        startIcon={<WorkHistory />}
       >
         Work History
       </Button>
@@ -201,7 +201,7 @@ export function SideBar(props: Props) {
         color="primary"
         disableElevation
         href="/experiments"
-        startIcon={<Science/>}
+        startIcon={<Science />}
       >
         Experiments
       </Button>
@@ -211,7 +211,7 @@ export function SideBar(props: Props) {
         color="primary"
         disableElevation
         href="/photos"
-        startIcon={<PhotoCamera/>}
+        startIcon={<PhotoCamera />}
       >
         Photos
       </Button>
@@ -222,7 +222,13 @@ export function SideBar(props: Props) {
         <Grid item xs={2}>
           {modeToggle()}
         </Grid>
-        <Grid container item xs={10} alignItems="center" justifyContent="flex-end">
+        <Grid
+          container
+          item
+          xs={10}
+          alignItems="center"
+          justifyContent="flex-end"
+        >
           <Grid item>
             <Link
               color="textSecondary"

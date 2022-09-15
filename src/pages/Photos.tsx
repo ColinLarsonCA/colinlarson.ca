@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { Grid } from "@mui/material";
 import axios from "axios";
 import { IntroCard, JobCard, JobCardProps } from "cards";
 import { Crumbs } from "common";
 import dayjs from "dayjs";
-import customParseFormat from 'dayjs/plugin/customParseFormat';
+import customParseFormat from "dayjs/plugin/customParseFormat";
 
-const PREFIX = 'Photos';
+const PREFIX = "Photos";
 const classes = {
   card: `${PREFIX}-card`,
-  source: `${PREFIX}-source`
+  source: `${PREFIX}-source`,
 };
-const StyledPage = styled('div')((
-  {
-    theme
-  }
-) => ({
+const StyledPage = styled("div")(({ theme }) => ({
   [`& .${classes.card}`]: {
     maxWidth: theme.spacing(100),
   },
 
   [`& .${classes.source}`]: {
     padding: theme.spacing(1),
-  }
+  },
 }));
 
 dayjs.extend(customParseFormat);
@@ -55,7 +51,6 @@ export function Photos() {
         console.error(err);
       });
   }, []);
-
 
   const numCards = jobs ? jobs.length + 1 : 0;
   const cards: any[] = [];

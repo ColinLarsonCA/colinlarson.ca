@@ -47,7 +47,7 @@ export const iconMap: Map<Site, IconData> = new Map([
 
 export const socialIcon = (site: Site) => {
   return (
-    <Tooltip title={site.split(' ')[0]}>
+    <Tooltip title={site.split(" ")[0]}>
       <IconButton href={iconMap.get(site)?.href || ""} target="_blank">
         <ImgIcon alt={site} src={iconMap.get(site)?.src || ""} />
       </IconButton>

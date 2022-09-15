@@ -23,7 +23,7 @@ export function Home() {
           />
         </Grid>
         <Grid item container md={12} lg={4}>
-        <IntroCard
+          <IntroCard
             title="Photos"
             text={`When I can peel myself away from the computer, I like to visit new places and occasionally snap a photo or two while I'm there. For easy cataloging and sharing, I've included a gallery of some of my travel photos. Take a look if you'd like!`}
             action="Take a look"

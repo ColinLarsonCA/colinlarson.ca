@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Card,
   Button,
@@ -11,17 +11,13 @@ import {
 } from "@mui/material";
 import Markdown from "react-markdown";
 
-const PREFIX = 'IntroCard';
+const PREFIX = "IntroCard";
 const classes = {
   card: `${PREFIX}-card`,
   spacer: `${PREFIX}-spacer`,
-  source: `${PREFIX}-source`
+  source: `${PREFIX}-source`,
 };
-const StyledCard = styled(Card)((
-  {
-    theme
-  }
-) => ({
+const StyledCard = styled(Card)(({ theme }) => ({
   [`&.${classes.card}`]: {
     display: "flex",
     flexDirection: "column",
@@ -36,7 +32,7 @@ const StyledCard = styled(Card)((
 
   [`& .${classes.source}`]: {
     paddingRight: theme.spacing(1),
-  }
+  },
 }));
 
 interface IntroCardProps {

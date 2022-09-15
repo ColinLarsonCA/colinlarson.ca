@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Button,
   Card,
@@ -12,21 +12,17 @@ import {
   Typography,
 } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
-import duration from 'dayjs/plugin/duration';
+import duration from "dayjs/plugin/duration";
 
-const PREFIX = 'JobCard';
+const PREFIX = "JobCard";
 const classes = {
   logo: `${PREFIX}-logo`,
   chips: `${PREFIX}-chips`,
   card: `${PREFIX}-card`,
   readTime: `${PREFIX}-readTime`,
-  source: `${PREFIX}-source`
+  source: `${PREFIX}-source`,
 };
-const StyledCard = styled(Card)((
-  {
-    theme
-  }
-) => ({
+const StyledCard = styled(Card)(({ theme }) => ({
   [`& .${classes.logo}`]: {
     height: 140,
   },
@@ -53,7 +49,7 @@ const StyledCard = styled(Card)((
 
   [`& .${classes.source}`]: {
     paddingRight: theme.spacing(1),
-  }
+  },
 }));
 
 dayjs.extend(duration);
@@ -70,7 +66,6 @@ export interface JobCardProps {
 }
 
 export function JobCard(props: JobCardProps) {
-
   const chips: any[] = [];
   props.tags.forEach((tag: string) => {
     chips.push(<Chip key={tag} label={tag} variant="outlined" />);
