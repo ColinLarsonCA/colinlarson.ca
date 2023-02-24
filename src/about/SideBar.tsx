@@ -143,21 +143,6 @@ export function SideBar(props: Props) {
       </Typography>
       <Divider className={classes.divider} variant="middle" />
       <Grid container justifyContent="center">
-        <Grid item xs={2} />
-        <Grid item xs={2}>
-          {socialIcon("Twitter")}
-        </Grid>
-        <Grid item xs={2}>
-          {socialIcon("Facebook")}
-        </Grid>
-        <Grid item xs={2}>
-          {socialIcon("Instagram")}
-        </Grid>
-        <Grid item xs={2}>
-          {socialIcon("Twitch")}
-        </Grid>
-        <Grid item xs={2} />
-
         <Grid item xs={3} />
         <Grid item xs={2}>
           {socialIcon(isDark ? "Github White" : "Github Black")}
@@ -204,16 +189,6 @@ export function SideBar(props: Props) {
         startIcon={<Science />}
       >
         Experiments
-      </Button>
-      <Button
-        className={classes.button}
-        variant="contained"
-        color="primary"
-        disableElevation
-        href="/photos"
-        startIcon={<PhotoCamera />}
-      >
-        Photos
       </Button>
 
       <div className={classes.spacer} />

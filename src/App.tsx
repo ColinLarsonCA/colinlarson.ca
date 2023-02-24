@@ -18,7 +18,6 @@ import {
   Theme,
   ThemeProvider,
 } from "@mui/material";
-import { Photos } from "pages/Photos";
 
 const PREFIX = "App";
 const classes = {
@@ -101,7 +100,6 @@ function App() {
                 <Route path="experiments" element={<Experiments />} />
                 <Route path="history" element={<History />} />
                 <Route path="history/:key" element={<Job />} />
-                <Route path="photos" element={<Photos />}></Route>
                 <Route path="/" element={<Home />} />
               </Routes>
             </Box>

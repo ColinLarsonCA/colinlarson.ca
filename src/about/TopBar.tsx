@@ -116,16 +116,7 @@ export function TopBar(props: Props) {
             <Science />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Photos">
-          <IconButton href="/photos">
-            <PhotoCamera />
-          </IconButton>
-        </Tooltip>
         <Divider variant="middle" flexItem />
-        {socialIcon("Twitter")}
-        {socialIcon("Facebook")}
-        {socialIcon("Instagram")}
-        {socialIcon("Twitch")}
         {socialIcon(isDark ? "Github White" : "Github Black")}
         {socialIcon("LinkedIn")}
         <Tooltip title="Email">
