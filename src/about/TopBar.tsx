@@ -17,7 +17,6 @@ import {
   Home as HomeIcon,
   WorkHistory,
   Science,
-  PhotoCamera,
 } from "@mui/icons-material";
 import Me from "assets/me.jpeg";
 import { useIsDark } from "themes";
