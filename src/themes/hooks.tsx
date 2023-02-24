@@ -1,13 +1,13 @@
-import { useTheme } from "@material-ui/core";
+import { PaletteMode, useTheme } from "@mui/material";
 
-export function useThemeType() {
-  return useTheme().palette.type;
+export function useThemeMode(): PaletteMode {
+  return useTheme().palette.mode;
 }
 
-export function useIsDark() {
-  return useThemeType() === "dark";
+export function useIsDark(): boolean {
+  return useThemeMode() === "dark";
 }
 
-export function useIsLight() {
-  return useThemeType() === "light";
+export function useIsLight(): boolean {
+  return useThemeMode() === "light";
 }

@@ -1,0 +1,8 @@
+build
+node_modules
+.github
+*.json
+*.yml
+*.yaml
+*.md
+*.html

@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Grid, makeStyles } from "@material-ui/core";
+import { styled } from "@mui/material/styles";
+import { Grid } from "@mui/material";
 import axios from "axios";
 import { IntroCard, JobCard, JobCardProps } from "cards";
 import { Crumbs } from "common";
 import dayjs from "dayjs";
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-dayjs.extend(customParseFormat);
+import customParseFormat from "dayjs/plugin/customParseFormat";
 
-const useStyles = makeStyles((theme) => ({
-  card: {
+const PREFIX = "History";
+const classes = {
+  card: `${PREFIX}-card`,
+  source: `${PREFIX}-source`,
+};
+const StyledPage = styled("div")(({ theme }) => ({
+  [`& .${classes.card}`]: {
     maxWidth: theme.spacing(100),
   },
-  source: {
+
+  [`& .${classes.source}`]: {
     padding: theme.spacing(1),
   },
 }));
+
+dayjs.extend(customParseFormat);
 
 export function History() {
   const [jobs, setJobs] = useState<JobCardProps[]>();
@@ -33,7 +41,7 @@ export function History() {
             logo: job.logo,
             tags: job.tags.sort(),
             start: dayjs(job.start, "MMM YYYY"),
-            end: job.end ? dayjs(job.end, "MMM YYYY") : dayjs(),
+            end: job.end ? dayjs(job.end, "MMM YYYY") : undefined,
             readtime: job.readtime,
           })
         );
@@ -43,7 +51,6 @@ export function History() {
         console.error(err);
       });
   }, []);
-  const classes = useStyles();
 
   const numCards = jobs ? jobs.length + 1 : 0;
   const cards: any[] = [];
@@ -59,7 +66,7 @@ export function History() {
         sm={12}
         md={many ? 6 : 12}
         lg={many ? 4 : 12}
-        xl={many ? 3 : 12}
+        xl={many ? 4 : 12}
       >
         {intro ? (
           <IntroCard
@@ -74,19 +81,19 @@ export function History() {
       </Grid>
     );
   };
-  cards.push(card({}, "intro", true));
+  // cards.push(card({}, "intro", true));
   jobs?.forEach((job: any, i: number) => cards.push(card(job, job.path)));
   return (
-    <React.Fragment>
+    <StyledPage>
       <Crumbs
         crumbs={[
           { href: "/", label: "Home" },
           { href: "/history", label: "Work History" },
         ]}
       />
-      <Grid container spacing={2} justify="center">
+      <Grid container spacing={2} justifyContent="center">
         {cards}
       </Grid>
-    </React.Fragment>
+    </StyledPage>
   );
 }

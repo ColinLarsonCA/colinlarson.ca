@@ -1,21 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
+import React, { useState, useEffect, forwardRef } from "react";
+import { styled } from "@mui/material/styles";
 import {
-  createMuiTheme,
-  CssBaseline,
-  makeStyles,
-  ThemeProvider as MaterialThemeProvider,
-} from "@material-ui/core";
-import { indigo, orange } from "@material-ui/core/colors";
+  BrowserRouter,
+  Link,
+  LinkProps,
+  Route,
+  Routes,
+} from "react-router-dom";
 import { About } from "about";
 import { Experiments, History, Home, Job } from "pages";
+import { createTheme } from "@mui/material/styles";
+import { indigo, orange } from "@mui/material/colors";
+import {
+  Box,
+  CssBaseline,
+  PaletteOptions,
+  Theme,
+  ThemeProvider,
+} from "@mui/material";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = "App";
+const classes = {
+  root: `${PREFIX}-root`,
+  content: `${PREFIX}-content`,
+};
+const StyledApp = styled("div")(({ theme }) => ({
+  [`& .${classes.root}`]: {
     display: "flex",
   },
-  content: {
+
+  [`& .${classes.content}`]: {
     flexGrow: 1,
     padding: theme.spacing(2),
     [theme.breakpoints.down("md")]: {
@@ -24,63 +38,75 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const LinkBehavior = forwardRef<
+  HTMLAnchorElement,
+  Omit<LinkProps, "to"> & { href: LinkProps["to"] }
+>((props, ref) => {
+  const { href, ...other } = props;
+  const hrefStr = href.toString();
+  const isExternal =
+    hrefStr.startsWith("http") || hrefStr.startsWith("mailto:");
+  if (isExternal) {
+    // eslint-disable-next-line
+    return <a href={hrefStr} {...other} />;
+  }
+  return <Link ref={ref} to={href} {...other} />;
+});
+
+const theme = (palette: PaletteOptions): Theme => {
+  return createTheme({
+    palette: palette,
+    components: {
+      MuiButtonBase: {
+        defaultProps: {
+          LinkComponent: LinkBehavior,
+        },
+      },
+    },
+  });
+};
+
+const light = theme({
+  mode: "light",
+  primary: indigo,
+  secondary: orange,
+});
+
+const dark = theme({
+  mode: "dark",
+  background: {
+    default: "#353535",
+    paper: "#353535",
+  },
+  primary: orange,
+  secondary: indigo,
+});
+
 function App() {
-  const classes = useStyles();
   const initialTheme = () =>
     localStorage.getItem("theme") === "light" ? "light" : "dark";
   const [theme, setTheme] = useState(initialTheme());
   const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
   useEffect(() => localStorage.setItem("theme", theme), [theme]);
-  const light = createMuiTheme({
-    palette: {
-      type: "light",
-      primary: indigo,
-      secondary: orange,
-    },
-  });
-  const dark = createMuiTheme({
-    palette: {
-      type: "dark",
-      background: {
-        paper: "#353535",
-      },
-      primary: orange,
-      secondary: indigo,
-    },
-  });
   return (
-    <MaterialThemeProvider theme={theme === "light" ? light : dark}>
-      <div className={classes.root}>
-        <CssBaseline />
-        <About toggleTheme={toggleTheme} />
-        <div className={classes.content}>
-          <Router>
-            <Switch>
-              <Route path="/experiments">
-                <Experiments />
-              </Route>
-              <Route path="/history/:key">
-                <Job />
-              </Route>
-              <Route path="/history">
-                <History />
-              </Route>
-              <Route path="/">
-                <Home />
-              </Route>
-            </Switch>
-          </Router>
-        </div>
-        {/* <Snackbar open={true}>
-          <Alert
-            severity="info"
-            onClose={() => {}}
-          >
-            <Typography>Check out my <Link href="https://kickstarter.com" target="_blank">Kickstarter</Link> and make sure to like and subscribe!</Typography>
-          </Alert>
-        </Snackbar> */}
-      </div>
-    </MaterialThemeProvider>
+    <ThemeProvider theme={theme === "light" ? light : dark}>
+      <BrowserRouter>
+        <StyledApp>
+          <div className={classes.root}>
+            <CssBaseline />
+            <About toggleTheme={toggleTheme} />
+            <Box component="main" className={classes.content}>
+              <Routes>
+                <Route path="experiments" element={<Experiments />} />
+                <Route path="history" element={<History />} />
+                <Route path="history/:key" element={<Job />} />
+                <Route path="/" element={<Home />} />
+              </Routes>
+            </Box>
+          </div>
+        </StyledApp>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from "@mui/material/styles";
 import {
   Button,
   Card,
@@ -9,37 +10,49 @@ import {
   Chip,
   Link,
   Typography,
-  makeStyles,
-} from "@material-ui/core";
+} from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
-import duration from 'dayjs/plugin/duration';
-dayjs.extend(duration);
+import duration from "dayjs/plugin/duration";
 
-const useStyles = makeStyles((theme) => ({
-  logo: {
+const PREFIX = "JobCard";
+const classes = {
+  logo: `${PREFIX}-logo`,
+  chips: `${PREFIX}-chips`,
+  card: `${PREFIX}-card`,
+  readTime: `${PREFIX}-readTime`,
+  source: `${PREFIX}-source`,
+};
+const StyledCard = styled(Card)(({ theme }) => ({
+  [`& .${classes.logo}`]: {
     height: 140,
   },
-  chips: {
+
+  [`& .${classes.chips}`]: {
     display: "flex",
     flexWrap: "wrap",
     "& > *": {
       margin: theme.spacing(0.5),
     },
   },
-  card: {
+
+  [`&.${classes.card}`]: {
     display: "flex",
     flexDirection: "column",
     "& .MuiCardContent-root": {
       flex: 1,
     },
   },
-  readTime: {
+
+  [`& .${classes.readTime}`]: {
     flex: 1,
   },
-  source: {
+
+  [`& .${classes.source}`]: {
     paddingRight: theme.spacing(1),
   },
 }));
+
+dayjs.extend(duration);
 
 export interface JobCardProps {
   path: string;
@@ -53,13 +66,12 @@ export interface JobCardProps {
 }
 
 export function JobCard(props: JobCardProps) {
-  const classes = useStyles();
   const chips: any[] = [];
   props.tags.forEach((tag: string) => {
     chips.push(<Chip key={tag} label={tag} variant="outlined" />);
   });
   return (
-    <Card className={classes.card}>
+    <StyledCard className={classes.card}>
       <CardHeader
         title={props.role}
         subheader={
@@ -76,7 +88,7 @@ export function JobCard(props: JobCardProps) {
         <div className={classes.chips}>{chips}</div>
       </CardContent>
       <CardActions>
-        <Button color="primary" href={"history/" + props.path}>
+        <Button color="primary" href={props.path}>
           Read More
         </Button>
         <Typography
@@ -96,10 +108,11 @@ export function JobCard(props: JobCardProps) {
             ".md"
           }
           target="_blank"
+          underline="hover"
         >
           Source ↗
         </Link>
       </CardActions>
-    </Card>
+    </StyledCard>
   );
 }

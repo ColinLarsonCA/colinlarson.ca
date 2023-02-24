@@ -1,11 +1,19 @@
 import React from "react";
-import { Icon, makeStyles } from "@material-ui/core";
+import { styled } from "@mui/material/styles";
+import { Icon } from "@mui/material";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = "ImgIcon";
+const classes = {
+  root: `${PREFIX}-root`,
+  image: `${PREFIX}-image`,
+};
+const StyledIcon = styled(Icon)(({ theme }) => ({
+  [`&.${classes.root}`]: {
     textAlign: "center",
+    display: "flex",
   },
-  image: {
+
+  [`& .${classes.image}`]: {
     height: "100%",
     color: theme.palette.primary.main,
   },
@@ -17,10 +25,9 @@ interface Props {
 }
 
 export function ImgIcon(props: Props) {
-  const classes = useStyles();
   return (
-    <Icon className={classes.root}>
+    <StyledIcon className={classes.root}>
       <img alt={props.alt} className={classes.image} src={props.src} />
-    </Icon>
+    </StyledIcon>
   );
 }

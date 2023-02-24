@@ -1,21 +1,15 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
-// import { Twitch, useIsLiveOnTwitch } from "twitch";
-import { IntroCard, TwitterCard } from "cards";
+import { Grid } from "@mui/material";
+import { IntroCard } from "cards";
 
 export function Home() {
   return (
-    <React.Fragment>
-      <Grid container spacing={2} justify="flex-start">
-        {/* {useIsLiveOnTwitch &&
-          <Grid item xs={12}>
-            <Twitch />
-          </Grid>
-        } */}
+    <div>
+      <Grid container spacing={2} justifyContent="flex-start">
         <Grid item container md={12} lg={4}>
           <IntroCard
             title="Work History"
-            text={`I've been a professional programmer since 2013 and documented my experiences at the various companies I've worked for. I've done work for Environment Canada, SiriusXM Satellite Radio, shipped and maintained countless systems from billing to marketplaces to IoT, and contributed to and lead teams locally and remotely across numerous stacks.\n\nThis is the place to go if you're looking to learn more about my professional contributions.`}
+            text={`I have been a professional programmer since 2013 and fully remote since 2020. The projects I've been involved with have spanned various domains, such as: satellite radio, billing, scheduling, recommendation engines, autonomous agriculture, and AB testing. My roles have involved individual contributions and leading and mentoring cross-functional teams within many different tech stacks.\n\nClick Start Reading below to learn more about my professional experiences and contributions.`}
             action="Start Reading"
             href="/history"
           />
@@ -23,15 +17,12 @@ export function Home() {
         <Grid item container md={12} lg={4}>
           <IntroCard
             title="Experiments"
-            text={`Occasionally I like to tinker with a personal project to try out a new technology or make something useful for myself. I've collected these under the Experiments section, take a look to see if there's anything there you might find useful as well! My latest experiment is a financial planning website named Will-o'-Wisp after the fiery spirit in Dungeons & Dragons, check it out at https://willowisp.ca`}
+            text={`Occasionally I like to tinker with a personal project to try out a new technology or make something useful for myself. I've collected these under the Experiments section; take a look to see if there's anything there you might find useful as well! My latest experiment is a financial planning website named Will-o'-Wisp, after the fiery spirit in Dungeons & Dragons.\n\nCheck it out at willowisp.ca`}
             action="Start Tinkering"
             href="/experiments"
           />
         </Grid>
-        <Grid item container md={12} lg={4}>
-          <TwitterCard />
-        </Grid>
       </Grid>
-    </React.Fragment>
+    </div>
   );
 }
