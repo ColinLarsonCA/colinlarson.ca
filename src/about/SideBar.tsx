@@ -132,7 +132,7 @@ export function SideBar(props: Props) {
         alt={Colin.name}
         src={Me}
         className={classes.avatar}
-        variant="square"
+        variant="rounded"
       />
       <Typography className={classes.name} variant="h5">
         {Colin.name}
