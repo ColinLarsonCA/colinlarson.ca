@@ -85,7 +85,7 @@ export function TopBar(props: Props) {
           alt={Colin.name}
           src={Me}
           className={`${classes.avatar} ${classes.smallAvatar}`}
-          variant={"square"}
+          variant="rounded"
         />
         <Grid className={classes.nameContainer} container>
           <Grid item xs={12}>

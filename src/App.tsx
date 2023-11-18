@@ -8,7 +8,7 @@ import {
   Routes,
 } from "react-router-dom";
 import { About } from "about";
-import { Experiments, History, Home, Job } from "pages";
+import { Experiments, History, Home, Job, PackingList } from "pages";
 import { createTheme } from "@mui/material/styles";
 import { indigo, orange } from "@mui/material/colors";
 import {
@@ -75,8 +75,8 @@ const light = theme({
 const dark = theme({
   mode: "dark",
   background: {
-    default: "#353535",
-    paper: "#353535",
+    default: "#101418",
+    paper: "#101418",
   },
   primary: orange,
   secondary: indigo,
@@ -100,6 +100,7 @@ function App() {
                 <Route path="experiments" element={<Experiments />} />
                 <Route path="history" element={<History />} />
                 <Route path="history/:key" element={<Job />} />
+                <Route path="packing" element={<PackingList />} />
                 <Route path="/" element={<Home />} />
               </Routes>
             </Box>
