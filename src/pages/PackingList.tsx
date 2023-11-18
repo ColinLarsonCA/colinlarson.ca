@@ -45,6 +45,7 @@ export function PackingList() {
     false
   );
   const { packingList, setPackingList } = useStoredPackingList();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [changed, setChanged] = useState(Date.now());
   const markChanged = () => setChanged(Date.now());
   const setItemPacked = (
