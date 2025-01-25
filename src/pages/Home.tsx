@@ -10,6 +10,7 @@ export function Home() {
         product growth experiments at 7shifts, learning Japanese, and hopefully
         visiting somewhere warm.
       </Alert>
+      <div style={{ height: 16 }} />
       <Grid container spacing={2} justifyContent="flex-start">
         <Grid item container md={12} lg={6}>
           <IntroCard
