@@ -106,6 +106,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 
   [`& .${classes.bottom}`]: {
     paddingRight: theme.spacing(2),
+    paddingBottom: theme.spacing(1),
   },
 }));
 
