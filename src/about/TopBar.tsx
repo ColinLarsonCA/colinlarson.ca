@@ -17,6 +17,7 @@ import {
   Home as HomeIcon,
   WorkHistory,
   Science,
+  Book,
 } from "@mui/icons-material";
 import Me from "assets/me.jpeg";
 import { useIsDark } from "themes";
@@ -115,8 +116,14 @@ export function TopBar(props: Props) {
             <Science />
           </IconButton>
         </Tooltip>
+        {/* <Tooltip title="Blog">
+          <IconButton href="/blog">
+            <Book />
+          </IconButton>
+        </Tooltip> */}
         <Divider variant="middle" flexItem />
         {socialIcon(isDark ? "Github White" : "Github Black")}
+        {socialIcon("Bluesky")}
         {socialIcon("LinkedIn")}
         <Tooltip title="Email">
           <IconButton href={Colin.mailto} target="_blank">

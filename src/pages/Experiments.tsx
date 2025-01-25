@@ -36,24 +36,33 @@ export function Experiments() {
             action="Check it out ↗"
             href="https://willowisp.ca"
             external
+            source="https://github.com/ColinLarsonCA/willowisp"
+          />
+        </Grid>
+        <Grid item container className={classes.card} xs={12} md={6}>
+          <IntroCard
+            title="Flagscan"
+            text={`Flagscan is a concurrent feature flag and experiment variant code scanning tool I wrote during a hackathon at 7shifts that turned into a production utility that we use to track and clean up stale flags across our web, Android, and iOS apps. The code linked here is an anonymized snapshot but could almost certainly be adapted to fit your codebases, you do have to roll your own results API and storage though, sorry!`}
+            action="Source ↗"
+            href="https://github.com/ColinLarsonCA/flagscan-mirror"
+            external
+          />
+        </Grid>
+        <Grid item container className={classes.card} xs={12} md={6}>
+          <IntroCard
+            title="iro2"
+            text={`iro2 is my public sandbox where I experiment with new ideas. Right now I'm building a service for discovering and categorizing collab cafes and other anime promotions in Japan, because I found the online sources for that right now are mostly blogs and entirely in Japanese. My hope is to have this ready to go before I visit Japan next so I can efficiently find merch for all my favourite anime series! And of course, make it available to everyone.`}
+            action="Source ↗"
+            href="https://github.com/ColinLarsonCA/iro2"
+            external
           />
         </Grid>
         <Grid item container className={classes.card} xs={12} md={6}>
           <IntroCard
             title="Hai domo"
             text={`Hai domo is a URL shortening website that I created to learn about Vue and Firebase. I had been working at Vendasta and my coworkers kept telling me about how great Firebase was but I had never heard of it, and I had also only used Angular as a framework. So, over the course of a couple weekends I created a URL shortener that generates gfycat style URLs (AdjectiveAdjectiveNoun) with anime character names as the noun.`}
-            action="Check it out ↗"
-            href="https://haido.moe"
-            external
-            source="https://gitlab.com/ColinLarson/hai-domo"
-          />
-        </Grid>
-        <Grid item container className={classes.card} xs={12} md={6}>
-          <IntroCard
-            title="OBS Random Gif"
-            text={`In the past I have occasionally streamed video games on Twitch and was at the time uncomfortable with having a face cam. To have something to show in place of that I wrote a quick program to grab random gifs from my computer and display them one at a time. I don't have any plans to add to it as services like Streamlabs have similar features now, but it's a capable if simple offline solution.`}
-            action="Check it out ↗"
-            href="https://github.com/ColinLarsonCA/obs-random-gif"
+            action="Source ↗"
+            href="https://gitlab.com/ColinLarson/hai-domo"
             external
           />
         </Grid>

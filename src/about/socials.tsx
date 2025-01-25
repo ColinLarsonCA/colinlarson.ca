@@ -1,37 +1,60 @@
 import React from "react";
+import Bluesky from "assets/bluesky.png";
 import GithubBlack from "assets/github-black.png";
 import GithubWhite from "assets/github-white.png";
 import Linkedin from "assets/linkedin.png";
 import { IconButton, Tooltip } from "@mui/material";
 import { ImgIcon } from "common/ImgIcon";
 
-export type Site = "Github White" | "Github Black" | "LinkedIn";
+export type Site = "Bluesky" | "Github White" | "Github Black" | "LinkedIn";
 
-export interface IconData {
+interface SiteData {
   href: string;
   src: any;
+  tooltip: string;
 }
 
-export const iconMap: Map<Site, IconData> = new Map([
+const siteData: Map<Site, SiteData> = new Map([
   [
     "Github White",
-    { href: "https://github.com/ColinLarsonCA", src: GithubWhite },
+    {
+      href: "https://github.com/ColinLarsonCA",
+      src: GithubWhite,
+      tooltip: "GitHub",
+    },
   ],
   [
     "Github Black",
-    { href: "https://github.com/ColinLarsonCA", src: GithubBlack },
+    {
+      href: "https://github.com/ColinLarsonCA",
+      src: GithubBlack,
+      tooltip: "GitHub",
+    },
+  ],
+  [
+    "Bluesky",
+    {
+      href: "https://bsky.app/profile/colinlarson.ca",
+      src: Bluesky,
+      tooltip: "Bluesky",
+    },
   ],
   [
     "LinkedIn",
-    { href: "https://www.linkedin.com/in/colinlarson/", src: Linkedin },
+    {
+      href: "https://www.linkedin.com/in/colinlarson/",
+      src: Linkedin,
+      tooltip: "LinkedIn",
+    },
   ],
 ]);
 
 export const socialIcon = (site: Site) => {
+  const data = siteData.get(site);
   return (
-    <Tooltip title={site.split(" ")[0]}>
-      <IconButton href={iconMap.get(site)?.href || ""} target="_blank">
-        <ImgIcon alt={site} src={iconMap.get(site)?.src || ""} />
+    <Tooltip title={data?.tooltip || ""}>
+      <IconButton href={data?.href || ""} target="_blank">
+        <ImgIcon alt={site} src={data?.src || ""} />
       </IconButton>
     </Tooltip>
   );

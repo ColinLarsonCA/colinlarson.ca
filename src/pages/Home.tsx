@@ -1,10 +1,15 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Alert, Grid } from "@mui/material";
 import { IntroCard } from "cards";
 
 export function Home() {
   return (
     <div>
+      <Alert severity="info">
+        Welcome to my little home on the internet! I'm currently hacking on
+        product growth experiments at 7shifts, learning Japanese, and hopefully
+        visiting somewhere warm.
+      </Alert>
       <Grid container spacing={2} justifyContent="flex-start">
         <Grid item container md={12} lg={6}>
           <IntroCard

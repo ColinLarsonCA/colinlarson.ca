@@ -18,6 +18,7 @@ import {
   Home as HomeIcon,
   WorkHistory,
   Science,
+  Book,
 } from "@mui/icons-material";
 import Me from "assets/me.jpeg";
 import { useIsDark } from "themes";
@@ -142,9 +143,12 @@ export function SideBar(props: Props) {
       </Typography>
       <Divider className={classes.divider} variant="middle" />
       <Grid container justifyContent="center">
-        <Grid item xs={3} />
+        <Grid item xs={2} />
         <Grid item xs={2}>
           {socialIcon(isDark ? "Github White" : "Github Black")}
+        </Grid>
+        <Grid item xs={2}>
+          {socialIcon("Bluesky")}
         </Grid>
         <Grid item xs={2}>
           {socialIcon("LinkedIn")}
@@ -156,7 +160,7 @@ export function SideBar(props: Props) {
             </IconButton>
           </Tooltip>
         </Grid>
-        <Grid item xs={3} />
+        <Grid item xs={2} />
       </Grid>
 
       <Button
@@ -189,6 +193,16 @@ export function SideBar(props: Props) {
       >
         Experiments
       </Button>
+      {/* <Button
+        className={classes.button}
+        variant="contained"
+        color="primary"
+        disableElevation
+        href="/blog"
+        startIcon={<Book />}
+      >
+        Blog
+      </Button> */}
 
       <div className={classes.spacer} />
       <Divider className={classes.divider} variant="middle" />

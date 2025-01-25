@@ -10,7 +10,7 @@ import {
 import { About } from "about";
 import { Experiments, History, Home, Job, PackingList } from "pages";
 import { createTheme } from "@mui/material/styles";
-import { indigo, orange } from "@mui/material/colors";
+import { indigo, lightBlue, orange } from "@mui/material/colors";
 import {
   Box,
   CssBaseline,
@@ -18,6 +18,8 @@ import {
   Theme,
   ThemeProvider,
 } from "@mui/material";
+import { Blog } from "pages/Blog";
+import { BlogPost } from "pages/BlogPost";
 
 const PREFIX = "App";
 const classes = {
@@ -78,8 +80,8 @@ const dark = theme({
     default: "#101418",
     paper: "#101418",
   },
-  primary: orange,
-  secondary: indigo,
+  primary: lightBlue,
+  secondary: orange,
 });
 
 function App() {
@@ -100,6 +102,8 @@ function App() {
                 <Route path="experiments" element={<Experiments />} />
                 <Route path="history" element={<History />} />
                 <Route path="history/:key" element={<Job />} />
+                <Route path="blog" element={<Blog />} />
+                <Route path="blog/:slug" element={<BlogPost />} />
                 <Route path="packing" element={<PackingList />} />
                 <Route path="/" element={<Home />} />
               </Routes>
