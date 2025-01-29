@@ -2,7 +2,6 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import {
   Button,
-  Divider,
   Drawer,
   Grid,
   IconButton,
@@ -142,7 +141,6 @@ export function SideBar(props: Props) {
       <Typography className={classes.desc} variant="caption">
         {Colin.title}
       </Typography>
-      <Divider className={classes.divider} variant="middle" />
       <Grid container justifyContent="center">
         <Grid item xs={2} />
         <Grid item xs={2}>
@@ -206,7 +204,6 @@ export function SideBar(props: Props) {
       </Button> */}
 
       <div className={classes.spacer} />
-      <Divider className={classes.divider} variant="middle" />
       <Grid container className={classes.bottom}>
         <Grid item xs={2}>
           {modeToggle()}

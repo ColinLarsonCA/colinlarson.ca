@@ -1,4 +1,5 @@
-import LoremIpsum from "./lorem-ipsum.md";
+import LoremIpsum from "./posts/lorem-ipsum.md";
+import BocchiTheRock from "./posts/bocchi-the-rock.md";
 
 export interface Post {
   date: string;
@@ -10,6 +11,12 @@ export interface Post {
 export const posts: Post[] = [
   {
     date: "2025-01-25",
+    slug: "bocchi-the-rock",
+    title: "Bocchi the Rock",
+    path: BocchiTheRock,
+  },
+  {
+    date: "2025-01-24",
     slug: "lorem-ipsum",
     title: "Lorem Ipsum",
     path: LoremIpsum,

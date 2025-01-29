@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import {
   AppBar,
@@ -64,6 +64,11 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
     padding: theme.spacing(1),
     paddingTop: 0,
   },
+
+  [`& .collapsed`]: {
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+  },
 }));
 
 interface Props {
@@ -72,35 +77,49 @@ interface Props {
 
 export function TopBar(props: Props) {
   const isDark = useIsDark();
-  const modeToggle = () => {
+  const [collapsed, setCollapsed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setCollapsed(window.scrollY > 100);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const darkLightModeToggle = () => {
     return (
       <IconButton onClick={() => props.toggleTheme()}>
         {isDark ? <Sun /> : <Moon />}
       </IconButton>
     );
   };
+
   return (
     <StyledAppBar color="inherit" position="fixed">
-      <Toolbar className={classes.namebar}>
-        <Avatar
-          alt={Colin.name}
-          src={Me}
-          className={`${classes.avatar} ${classes.smallAvatar}`}
-          variant="rounded"
-        />
-        <Grid className={classes.nameContainer} container>
-          <Grid item xs={12}>
-            <Typography variant="h6">{Colin.name}</Typography>
+      {!collapsed && (
+        <Toolbar className={classes.namebar}>
+          <Avatar
+            alt={Colin.name}
+            src={Me}
+            className={`${classes.avatar} ${classes.smallAvatar}`}
+            variant="rounded"
+          />
+          <Grid className={classes.nameContainer} container>
+            <Grid item xs={12}>
+              <Typography variant="h6">{Colin.name}</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography className={classes.desc} variant="caption">
+                {Colin.title}
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <Typography className={classes.desc} variant="caption">
-              {Colin.title}
-            </Typography>
-          </Grid>
-        </Grid>
-        {modeToggle()}
-      </Toolbar>
-      <Toolbar className={classes.linkbar}>
+        </Toolbar>
+      )}
+      <Toolbar className={`${classes.linkbar} ${collapsed ? "collapsed" : ""}`}>
         <Tooltip title="Home">
           <IconButton href="/">
             <HomeIcon />
@@ -130,6 +149,8 @@ export function TopBar(props: Props) {
             <Email />
           </IconButton>
         </Tooltip>
+        <div style={{ flexGrow: 1 }} />
+        {darkLightModeToggle()}
       </Toolbar>
     </StyledAppBar>
   );

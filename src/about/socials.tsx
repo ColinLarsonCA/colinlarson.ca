@@ -12,6 +12,7 @@ interface SiteData {
   href: string;
   src: any;
   tooltip: string;
+  username: string;
 }
 
 const siteData: Map<Site, SiteData> = new Map([
@@ -21,6 +22,7 @@ const siteData: Map<Site, SiteData> = new Map([
       href: "https://github.com/ColinLarsonCA",
       src: GithubWhite,
       tooltip: "GitHub",
+      username: "ColinLarsonCA",
     },
   ],
   [
@@ -29,6 +31,7 @@ const siteData: Map<Site, SiteData> = new Map([
       href: "https://github.com/ColinLarsonCA",
       src: GithubBlack,
       tooltip: "GitHub",
+      username: "ColinLarsonCA",
     },
   ],
   [
@@ -37,6 +40,7 @@ const siteData: Map<Site, SiteData> = new Map([
       href: "https://bsky.app/profile/colinlarson.ca",
       src: Bluesky,
       tooltip: "Bluesky",
+      username: "colinlarson.ca",
     },
   ],
   [
@@ -45,9 +49,14 @@ const siteData: Map<Site, SiteData> = new Map([
       href: "https://www.linkedin.com/in/colinlarson/",
       src: Linkedin,
       tooltip: "LinkedIn",
+      username: "colinlarson",
     },
   ],
 ]);
+
+export const social = (site: Site) => {
+  return siteData.get(site);
+};
 
 export const socialIcon = (site: Site) => {
   const data = siteData.get(site);
