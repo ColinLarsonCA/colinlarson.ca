@@ -8,7 +8,7 @@ import {
   Routes,
 } from "react-router-dom";
 import { About } from "about";
-import { Experiments, History, Home, Job, PackingList } from "pages";
+import { Experiments, History, Home, Job, PackingList, Travel } from "pages";
 import { createTheme } from "@mui/material/styles";
 import { indigo, lightBlue, orange } from "@mui/material/colors";
 import {
@@ -105,6 +105,7 @@ function App() {
                 <Route path="blog" element={<Blog />} />
                 <Route path="blog/:slug" element={<BlogPost />} />
                 <Route path="packing" element={<PackingList />} />
+                <Route path="travel" element={<Travel />} />
                 <Route path="/" element={<Home />} />
               </Routes>
             </Box>

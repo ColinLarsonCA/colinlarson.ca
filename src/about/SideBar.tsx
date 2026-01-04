@@ -17,6 +17,7 @@ import {
   Home as HomeIcon,
   WorkHistory,
   Science,
+  TravelExplore,
   // Book,
 } from "@mui/icons-material";
 import Me from "assets/me.jpeg";
@@ -171,6 +172,16 @@ export function SideBar(props: Props) {
         startIcon={<HomeIcon />}
       >
         Home
+      </Button>
+      <Button
+        className={classes.button}
+        variant="contained"
+        color="primary"
+        disableElevation
+        href="/travel"
+        startIcon={<TravelExplore />}
+      >
+        Travel
       </Button>
       <Button
         className={classes.button}

@@ -14,19 +14,24 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.3.1",
     "@mui/material": "^6.3.1",
+    "@types/leaflet": "^1.9.21",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "axios": "^1.7.9",
     "dayjs": "^1.11.13",
+    "leaflet": "^1.9.4",
     "prop-types": "^15.7.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-leaflet": "^5.0.0",
     "react-markdown": "^9.0.1",
+    "react-photo-album": "^3.4.0",
     "react-router-dom": "^7.1.1",
     "react-scripts": "^5.0.1",
     "react-social-icons": "^6.18.0",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.2",
+    "yet-another-react-lightbox": "^3.28.0"
   },
   "eslintConfig": {
     "extends": "react-app"

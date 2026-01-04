@@ -17,6 +17,7 @@ import {
   Home as HomeIcon,
   WorkHistory,
   Science,
+  TravelExplore,
   // Book,
 } from "@mui/icons-material";
 import Me from "assets/me.jpeg";
@@ -123,6 +124,11 @@ export function TopBar(props: Props) {
         <Tooltip title="Home">
           <IconButton href="/">
             <HomeIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Travel">
+          <IconButton href="/travel">
+            <TravelExplore />
           </IconButton>
         </Tooltip>
         <Tooltip title="Work History">
