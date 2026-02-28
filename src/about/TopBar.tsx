@@ -146,7 +146,6 @@ export function TopBar(props: Props) {
             <Book />
           </IconButton>
         </Tooltip> */}
-        <Divider variant="middle" flexItem />
         {socialIcon(isDark ? "Github White" : "Github Black")}
         {socialIcon("Bluesky")}
         {socialIcon("LinkedIn")}
