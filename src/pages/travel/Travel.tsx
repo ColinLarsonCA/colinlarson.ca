@@ -35,10 +35,15 @@ const StyledPage = styled("div")(({ theme }) => ({
   },
 }));
 
+const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+
 export function Travel() {
   const width = useWidth();
   const isMobile = width !== "lg" && width !== "xl";
-  const latestVisit = getLatestVisit(visits);
+  const visibleVisits = visits.filter(
+    (v) => parseLocalDate(v.startDate).getTime() - Date.now() <= ONE_WEEK_MS
+  );
+  const latestVisit = getLatestVisit(visibleVisits);
   const [mapCenter, setMapCenter] = useState<[number, number]>([20, 0]); // Default center
   const [mapZoom, setMapZoom] = useState<number>(1); // Default zoom
   const [mapKey, setMapKey] = useState<number>(0); // Key to force map re-render
@@ -48,7 +53,7 @@ export function Travel() {
     selectedVisit && latestVisit && isSelectedVisit(selectedVisit, latestVisit);
 
   // Sort places by date for timeline (most recent first)
-  const sortedVisits = [...visits].sort((a, b) =>
+  const sortedVisits = [...visibleVisits].sort((a, b) =>
     b.startDate.localeCompare(a.startDate)
   );
 
@@ -196,9 +201,14 @@ const VisitDetailPanel: React.FC<VisitDetailPanelProps> = ({
 }) => {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
   const isUpcomingVisit = parseLocalDate(selectedVisit.startDate) > new Date();
+  const isCurrentlyVisiting =
+    parseLocalDate(selectedVisit.startDate) <= new Date() &&
+    parseLocalDate(selectedVisit.endDate) >= new Date();
   let visitPrefix = "I visited";
   if (isUpcomingVisit) {
     visitPrefix = "I will be visiting";
+  } else if (isCurrentlyVisiting) {
+    visitPrefix = "I am visiting";
   } else if (isLatestVisitSelected) {
     visitPrefix = "I last visited";
   }

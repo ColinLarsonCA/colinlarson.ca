@@ -1,8 +1,11 @@
 import {
   AMSTERDAM,
   BRUSSELS,
+  BUSAN,
+  DA_NANG,
   Destination,
   FUKUOKA,
+  HANOI,
   KAGOSHIMA,
   MONTREAL,
   NANTES,
@@ -28,6 +31,24 @@ export interface Photo {
 
 export const visits: Visit[] = [
   // 2026
+  {
+    destination: HANOI,
+    startDate: "2026-04-05",
+    endDate: "2026-04-16",
+    photos: [],
+  },
+  {
+    destination: DA_NANG,
+    startDate: "2026-03-21",
+    endDate: "2026-04-05",
+    photos: [],
+  },
+  {
+    destination: BUSAN,
+    startDate: "2026-02-21",
+    endDate: "2026-03-21",
+    photos: [],
+  },
   {
     destination: SEOUL,
     startDate: "2026-01-18",
