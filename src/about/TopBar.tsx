@@ -8,7 +8,6 @@ import {
   Tooltip,
   Typography,
   Avatar,
-  Divider,
 } from "@mui/material";
 import {
   Brightness4 as Moon,
